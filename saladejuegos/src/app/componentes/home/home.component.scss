@@ -52,6 +52,15 @@
     width: 100%;
 }
 
+.iconGun{
+    background-image: url("../../assets/iconGun.jpg");
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 70px;
+    height: 70px;
+}
+
 .Home{
     font-family: 'westernFont';
     text-shadow: 5px 5px 5px black;
@@ -66,7 +75,7 @@
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(14.5px);
 	-webkit-backdrop-filter: blur(14.5px);
-	border: 1px solid bisque;
+	border: 2px solid bisque;
 	padding: 30px;
     animation: 1s ease-out 0s 1 slideInFromTop;
 }
@@ -146,4 +155,7 @@ h4{
     animation-iteration-count: infinite; 
 }  
 
+i{
+    font-size: 100px;
+}
 

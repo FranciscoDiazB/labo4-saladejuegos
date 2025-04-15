@@ -17,7 +17,7 @@
 
 @keyframes slideInFromBelow {
     0% {
-      transform: translateY(1000%);
+      transform: translateY(50%);
       opacity: 0;
     }
     100% {
@@ -54,18 +54,17 @@
 
 .Login{
     font-family: 'westernFont';
-    text-shadow: 5px 5px 5px black;
 	position: relative;
-	top: 30%;
+	top: 28%;
 	left: 39%;
 	margin: -150px 0 0 -150px;
 	width: 700px;
-	height: 550px;
+	height: 650px;
 	background: rgba(255, 255, 255, 0.06);
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(14.5px);
 	-webkit-backdrop-filter: blur(14.5px);
-	border: 1px solid bisque;
+	border: 2px solid bisque;
 	padding: 30px;
     animation: 1s ease-out 0s 1 slideInFromTop;
 }
@@ -125,7 +124,7 @@ h1{
 
 .eyepassword{
     position: fixed;
-    top: 47.5%;
+    top: 40%;
     left: 85.9%;
     border: transparent;
     background-color: transparent; 
@@ -136,6 +135,31 @@ h1{
 
 i{
     color: black;
+}
+
+.messageError{
+    width: 650px;
+    height: 100px;
+    background-color: bisque;
+    border: 1px solid rgba(190, 12, 12, 0.685);
+    border-radius: 5%;
+    text-align: center;
+    position: absolute;
+    top: 80%;
+    left: 3.3%;
+    visibility: hidden;
+    transform: scale(1);
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-msgError{
+    visibility: visible;
+    top: 50%;
+    transform: scale(1);
+}
+
+p{
+    font-size: 25px;
 }
 
 

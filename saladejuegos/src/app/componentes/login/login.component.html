@@ -17,9 +17,33 @@
                 }
             </button>
           </div>
-          <button type="submit" class="btn btn-default" (click)="userLogin('home')">Ingresar</button>
+          <button type="submit" class="btn btn-default" (click)="userLogin('home')" id="btnLogin">Ingresar</button><br>
+          <button type="submit" class="btn btn-default" (click)="completeUser('uno')" style="width: 28.7%; margin-right: 15px;">Usuario Uno</button>
+          <button type="submit" class="btn btn-default" (click)="completeUser('')" style="width: 28.7%;">Usuario Dos</button>
         </form>
+        <br>
+        <br>
+          <div class="messageError" id="msgEr">
+            
+            <div style="position: relative; left: 8%; top: 30%; display: flex;">
+              <br><br>
+              @switch (errorNumber) {
+                @case (1) {
+                  <p>¡Error! Tiene que completar el campo del correo. Reintente...</p>
+                } 
+                @case (2) {
+                  <p>¡Error! Los datos ingresados son inválidos. Reintente...</p>
+                }
+              }
+              <button style="height: 30px; margin-left: 15px;" (click)="cerrarMensaje()"><i class="fa-solid fa-xmark" style="height: 15px;"></i></button>
+            </div>  
+          </div>
+
       </div>
+
+      <script>
+
+      </script>
 
 </div>
  
