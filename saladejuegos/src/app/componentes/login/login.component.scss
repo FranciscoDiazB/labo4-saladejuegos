@@ -4,11 +4,51 @@
     src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
 }
 
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(1000%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(1000%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
 .backgroundLogin{
-    background-image: url("../../assets/backgroundRDRII.jpg");
+    background-image: url("../../assets/backgroundWestern.jpg");
     position: absolute;
     z-index: 0;
-    height: 93.8%;
+    height: 91.7%;
     width: 100%;
 }
 
@@ -27,6 +67,7 @@
 	-webkit-backdrop-filter: blur(14.5px);
 	border: 1px solid bisque;
 	padding: 30px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
 }
 
 h1{
@@ -36,6 +77,7 @@ h1{
     margin-bottom: 25px;
     color: bisque;
     text-shadow: 5px 5px 5px black;
+    animation: 2s ease-out 0s 1 slideInFromTop;
 }
 
 .container{
@@ -49,6 +91,7 @@ h1{
     margin-bottom: 25px;
     transition: 1s;
     height: 40px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
 
     &:focus{
         background-color: rgba(190, 12, 12, 0.685);
@@ -65,28 +108,30 @@ h1{
     border-color: bisque;
     transition: 1s;
     color: bisque;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
 
     &:hover{
         background-color: black;
         border-color: bisque;
-        color: red;
+        color: #E73332;
     }
 
     &:focus{
-        background-color: rgba(190, 12, 12, 0.685);
-        border-color: bisque;
+        background-color: black;
+        border-color: #E73332;
         color: bisque;
     }
 }
 
 .eyepassword{
     position: fixed;
-    top: 41.5%;
+    top: 47.5%;
     left: 85.9%;
     border: transparent;
     background-color: transparent; 
     color: azure; 
     font-size: 20px;
+    animation: 2s ease-out 0s 1 slideInFromRight;
 }
 
 i{

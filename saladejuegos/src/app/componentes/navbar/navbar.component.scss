@@ -7,12 +7,12 @@
 .nav {
     top: 0;
     width: 100%;
-    background-color: transparent;
+    background-color: #E73332;
     color: #fff;
     display: flex;
     padding: 0 16px;
     align-items: center;
-    height: 56px;
+    height: 76px;
     font-family: "westernFont";
   }
 
@@ -28,12 +28,12 @@
     &:hover{
         background-color: black;
         border-color: bisque;
-        color: red;
+        color: #E73332;
     }
 
     &:focus{
-        background-color: rgba(190, 12, 12, 0.685);
-        border-color: bisque;
+        background-color: black;
+        border-color: #E73332;
         color: bisque;
     }
 }

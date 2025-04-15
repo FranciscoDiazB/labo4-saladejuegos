@@ -5,14 +5,61 @@
 }
 
 .backgroundQuienSoy{
-    background-image: url("../home/assets/backgroundWestern.jpg");
+    background-image: url("../../assets/backgroundWestern.jpg");
     position: absolute;
     z-index: 0;
-    height: 93.8%;
+    height: 91.7%;
     width: 100%;
 }
 
-.QuienSoy{
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    
+      from {opacity: 0};
+      to {opacity: 1};
+
+}
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(150%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+.quienSoy{
     font-family: 'westernFont';
 	position: relative;
 	top: 26%;
@@ -27,6 +74,17 @@
 	-webkit-backdrop-filter: blur(14.5px);
 	border: 1px solid bisque;
 	padding: 30px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.fotoFranDiaz{
+    background-image: url("../../assets/FranDiazFoto.jpg");
+    position: relative;
+    width: 250px;
+    height: 350px;
+    left: 65%;
+    top: -80%;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
 }
 
 h1{
@@ -36,6 +94,7 @@ h1{
     color: bisque;
     text-shadow: 5px 5px 5px black;
     margin-bottom: 20px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
 }
 
 h4{
@@ -43,4 +102,15 @@ h4{
     position: relative;
     left: 3.5%;
     color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    animation: 2s ease-out 0s 1 slideInFromRight;
+}
+
+h3{
+    font-size: 43px;
+    position: relative;
+    left: 3.5%;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
 }
