@@ -1,0 +1,39 @@
+
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+.nav {
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    height: 56px;
+    font-family: "westernFont";
+  }
+
+  .btn{
+    background-color: rgba(190, 12, 12, 0.685);
+    font-size: 22px;
+    margin-right: 15px;
+    width: 8%;
+    border-color: bisque;
+    transition: 1s;
+    color: bisque;
+
+    &:hover{
+        background-color: black;
+        border-color: bisque;
+        color: red;
+    }
+
+    &:focus{
+        background-color: rgba(190, 12, 12, 0.685);
+        border-color: bisque;
+        color: bisque;
+    }
+}

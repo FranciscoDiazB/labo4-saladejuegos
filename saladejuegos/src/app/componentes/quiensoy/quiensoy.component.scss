@@ -1,0 +1,46 @@
+
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+.backgroundQuienSoy{
+    background-image: url("../home/assets/backgroundWestern.jpg");
+    position: absolute;
+    z-index: 0;
+    height: 93.8%;
+    width: 100%;
+}
+
+.QuienSoy{
+    font-family: 'westernFont';
+	position: relative;
+	top: 26%;
+	left: 30.5%;
+	margin: -150px 0 0 -150px;
+    border-radius: 0%;
+	width:1000px;
+	height:700px;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+	border: 1px solid bisque;
+	padding: 30px;
+}
+
+h1{
+    font-size: 103px;
+    position: relative;
+    left: 3.5%;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 20px;
+}
+
+h4{
+    font-size: 33px;
+    position: relative;
+    left: 3.5%;
+    color: bisque;
+}

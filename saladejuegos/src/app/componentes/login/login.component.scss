@@ -1,0 +1,96 @@
+
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+.backgroundLogin{
+    background-image: url("../../assets/backgroundRDRII.jpg");
+    position: absolute;
+    z-index: 0;
+    height: 93.8%;
+    width: 100%;
+}
+
+.Login{
+    font-family: 'westernFont';
+    text-shadow: 5px 5px 5px black;
+	position: relative;
+	top: 30%;
+	left: 39%;
+	margin: -150px 0 0 -150px;
+	width: 700px;
+	height: 550px;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+	border: 1px solid bisque;
+	padding: 30px;
+}
+
+h1{
+    font-size: 103px;
+    position: relative;
+    left: 20.3%;
+    margin-bottom: 25px;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+}
+
+.container{
+    width: 165%;
+}
+
+.form-control{
+    font-size: 20px;
+    width: 59%; 
+    background-color: bisque;
+    margin-bottom: 25px;
+    transition: 1s;
+    height: 40px;
+
+    &:focus{
+        background-color: rgba(190, 12, 12, 0.685);
+        border-color: bisque;
+        color: bisque;
+    }
+}
+
+.btn{
+    background-color: rgba(190, 12, 12, 0.685);
+    font-size: 30px;
+    margin-top: 15px;
+    width: 59%;
+    border-color: bisque;
+    transition: 1s;
+    color: bisque;
+
+    &:hover{
+        background-color: black;
+        border-color: bisque;
+        color: red;
+    }
+
+    &:focus{
+        background-color: rgba(190, 12, 12, 0.685);
+        border-color: bisque;
+        color: bisque;
+    }
+}
+
+.eyepassword{
+    position: fixed;
+    top: 41.5%;
+    left: 85.9%;
+    border: transparent;
+    background-color: transparent; 
+    color: azure; 
+    font-size: 20px;
+}
+
+i{
+    color: black;
+}
+
+
