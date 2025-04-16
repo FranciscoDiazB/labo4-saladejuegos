@@ -9,5 +9,5 @@ import { NavbarComponent } from "./componentes/navbar/navbar.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'saladejuegos';
+  title = 'Wild West Games';
 }

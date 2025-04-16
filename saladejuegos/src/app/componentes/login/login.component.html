@@ -3,11 +3,10 @@
 <div class="Login">
 
     <div class="container">
-        <h1>Login</h1>
-        <form>
+        <h1>Login</h1>      
           <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}"/>
-            <input [type]="show ? 'text':'password'" class="form-control" id="pwd" placeholder="Ingrese su Contraseña" [(ngModel)]="password" [ngModelOptions]="{standalone:true}"/>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" [(ngModel)]="email"/>
+            <input [type]="show ? 'text':'password'" class="form-control" id="pwd" placeholder="Ingrese su Contraseña" [(ngModel)]="password"/>
             <button type="button" class="eyepassword" (click)="showHidePassword()">
                 @if(show == true){
                     <i class="fa-regular fa-eye"></i>
@@ -20,7 +19,6 @@
           <button type="submit" class="btn btn-default" (click)="userLogin('home')" id="btnLogin">Ingresar</button><br>
           <button type="submit" class="btn btn-default" (click)="completeUser('uno')" style="width: 28.7%; margin-right: 15px;">Usuario Uno</button>
           <button type="submit" class="btn btn-default" (click)="completeUser('')" style="width: 28.7%;">Usuario Dos</button>
-        </form>
         <br>
         <br>
           <div class="messageError" id="msgEr">
