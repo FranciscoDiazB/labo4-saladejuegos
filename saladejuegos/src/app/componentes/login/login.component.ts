@@ -1,7 +1,7 @@
-import { Component, linkedSignal, OnInit } from '@angular/core';
+import { Component, inject, linkedSignal, OnInit, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { createClient } from '@supabase/supabase-js'
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { createClient } from '@supabase/supabase-js'
 
 export class LoginComponent implements OnInit{
 
-supabase = createClient('https://didagcbnjmwdbhqgvlbc.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpZGFnY2Juam13ZGJocWd2bGJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3NDIxMTMsImV4cCI6MjA2MDMxODExM30.LPeNC1gkCkNgpwXPOiFfmqPg2BxZKQ3E7qqlJ5cqWJ4');
+supaBase = inject(SupabaseService);
 
 show:boolean = false;
 email:string = "";
@@ -20,31 +20,28 @@ password:string = "";
 errorNumber:number = 0;
 
 ngOnInit(): void {
-
+  
 }
 
 constructor(private router:Router){
 }
 
-userLogin(path:string){
+userLogin(path:string):void{
 
-  this.supabase.auth.signInWithPassword({
-    email: this.email,
-    password: this.password
-  }).then(({data, error}) => {
-    if(error){
+  this.supaBase.login(this.email, this.password).subscribe((result) => {
+    if(result.error){
 
-      console.error('Error', error.message);
+      console.log(result.error.message);
       
-      if(error.message == 'missing email or phone'){
-        this.errorNumber = 1; 
-      }
-      else if(error.message == 'Invalid login credentials'){
+      if(result.error.message == "Invalid login credentials"){
         this.errorNumber = 2;
       }
+      else if(result.error.message == "missing email or phone"){
+        this.errorNumber = 1;
+      }
 
-    const element = document.getElementById("msgEr");
-    element?.classList.add('open-msgError');   
+      const element = document.getElementById("msgEr");
+      element?.classList.add('open-msgError');   
     }
     else{
       this.router.navigate([path]);

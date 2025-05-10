@@ -2,6 +2,14 @@
  
     <button type="button" class="btn btn-default" routerLink="home" >Home</button>
     <button type="button" class="btn btn-default" routerLink="quiensoy">Quien Soy</button>
-    <button type="button" class="btn btn-default" routerLink="login" >Login</button>
+
+    @if(supaBase.currentUser() ===  null){
+        <button type="button" class="btn btn-default" routerLink="login" >Login</button>
+        <button type="button" class="btn btn-default" routerLink="registro" >Registro</button>
+    }
+    @else {
+        <h3 style="margin-right: 15px; left: 60%; position: relative;">Usuario: {{this.supaBase.currentUser()?.email}}</h3>
+        <button type="button" class="btn btn-default" style="left: 60%; position: relative;" (click)="signOutSession()">Cerrar Sesion</button>
+    }
 
 </div>

@@ -3,27 +3,36 @@
     <div class="Home">
 
         <h1>Wild West Games  <i class="fa-solid fa-hat-cowboy"></i></h1>
-  
-        <div class="container" style="display: flex; left: -10%; position: relative;">
+        
+        @if (this.supaBase.currentUser()) {
 
-            <button class="higherLowerImage pulse"></button>
+            <div class="container" style="display: flex; left: -10%; position: relative;">
 
-            <button class="hangManImage pulse"></button>
-
-            <button class="triviaImage pulse"></button>
-        </div>
+                <button class="higherLowerImage pulse"></button>
+                <button class="hangManImage pulse"></button>
+                <button class="triviaImage pulse"></button>
+                <button class="shooterImage pulse"></button>
+            </div>
 
         <br>
 
         <div class="container" style="display: flex; left: -10%; position: relative;">
 
-            <h4 style="left: 1%;">Mayor o Menor</h4>
-            <h4 style="left: 6%;">Ahorcado</h4>
-            <h4 style="left: 13%;">Preguntados</h4>
+            <h4 style="left: 0%;">Mayor o Menor</h4>
+            <h4 style="left: 5%;">Ahorcado</h4>
+            <h4 style="left: 11%;">Preguntados</h4>
+            <h4 style="left: 18%;">Shooter</h4>
 
         </div>
 
+        <button class="chatBtn pulse"><i style="font-size: 40px; color: bisque;" class="fa-solid fa-comments"></i></button>
+        }
+        @else if(this.supaBase.currentUser() === null){
 
+            <h3 style="top: 40%;">Para poder ingresar al Menu Principal, primero tiene que iniciar sesión.</h3>
+            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        
     </div>
     
 </div>

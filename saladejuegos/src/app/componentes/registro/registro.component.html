@@ -1,0 +1,47 @@
+<div class="backgroundRegister">
+
+    <div class="Register">
+    
+        <div class="container">
+            <h1>Registro</h1>      
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" [(ngModel)]="email"/>
+                <input type="password" class="form-control" id="email" placeholder="Ingrese su Contraseña" [(ngModel)]="password"/>
+                <button type="submit" class="btn btn-default" (click)="userRegister('home')">Registrar Nuevo Usuario</button><br><br>
+                <button type="button" class="btnLink" (click)="redirctToLogin('login')" >¿Ya tiene una cuenta? Inicie Sesión...</button><br>
+
+              </div>
+            <br>
+            <br>
+              <div class="messageError" id="msgEr">
+                
+                <div style="position: relative; left: 8%; top: 30%; display: flex;">
+                  <br><br>
+                  @switch (errorNumber) {
+                    @case (1) {
+                      <p>¡Error! Tiene que completar los campos. Complete y reintente...</p>
+                    } 
+                    @case (2) {
+                      <p>¡Error! Necesita completar el campo de contraseña. Reintente...</p>
+                    }
+                    @case (3) {
+                      <p>¡Error! El correo ya fue utilizado. Reintente con un nuevo usuario...</p>
+                    } 
+                    @case (4) {
+                      <p>¡Error! La contraseña debe tener como mínimo 6 caracteres.</p>
+                    }
+                  }
+                  <button style="height: 30px; margin-left: 15px;" (click)="cerrarMensaje()"><i class="fa-solid fa-xmark" style="height: 15px;"></i></button>
+                </div>  
+              </div>
+    
+          </div>
+    
+          <script>
+    
+          </script>
+    
+    </div>
+     
+    
+    </div>

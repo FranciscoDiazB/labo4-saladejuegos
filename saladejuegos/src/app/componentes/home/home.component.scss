@@ -17,7 +17,7 @@
 
 @keyframes slideInFromBelow {
     0% {
-      transform: translateY(1000%);
+      transform: translateY(500%);
       opacity: 0;
     }
     100% {
@@ -120,6 +120,17 @@ h1{
     margin-right: 45px;
 }
 
+.shooterImage{
+    background-image: url("../../assets/shooterGame.jpg");
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15%;
+    box-shadow: 7px 7px 15px black;
+    margin-right: 45px;
+}
+
+
 h4{
     font-size: 43px;
     position: relative;
@@ -127,6 +138,44 @@ h4{
     text-shadow: 5px 5px 5px chocolate;
     margin-right: 45px;
     animation: 2s ease-out 0s 1 slideInFromRight;
+}
+
+h3{
+    font-size: 60px;
+    left: 2.5%;
+    position: fixed;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+}
+
+.chatBtn{
+    background-color: transparent;
+    position: relative;
+    top: 5.8%;
+    left: 95%;
+    width: 75px;
+    height: 67px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+
+.chat{
+    font-family: 'westernFont';
+	position: relative;
+	top: 26%;
+	left: 16%;
+    border-radius: 25%;
+	width: 450px;
+	height: 600px;
+	background: black;
+	border: 2px solid bisque;
+	padding: 30px;
 }
 
 @keyframes pulse {
