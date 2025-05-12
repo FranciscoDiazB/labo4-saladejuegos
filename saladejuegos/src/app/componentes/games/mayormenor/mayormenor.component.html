@@ -1,0 +1,52 @@
+<div class="backgroundGames">
+
+    <div class="Game">
+        <h1 class="h1-title" style="left: 3.5%;">Mayor o Menor</h1>
+
+        @if(this.supaBase.currentUser() == null){
+
+            <h3 class="slide-B" style="top: 40%;">Para poder jugar al Mayor o Menor, primero tiene que iniciar sesión.</h3>
+            <h3 class="slide-B" style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        @else {
+
+            @if(lives > 0){
+                <div class="lives">
+        
+                    @for (item of [].constructor(lives); track $index) {
+                        <i class="fa-solid fa-heart"></i><br>
+                    }
+        
+                </div>
+            }
+                <div style="position: relative; left: 7%;">
+                    <br><br><br><br><br>
+                    <button class="upArrow pulse" (click)="guess(true)" style="margin-right: 50px;"></button>
+                    <button class="downArrow pulse" (click)="guess(false)"></button>
+        
+                </div>
+                <div class="deckStyle" style="position: fixed; top: 30%; left: 45%;">
+    
+                    <img class="img-Card" [src]="currentCard.image" alt="Carta actual" style="height: 350px; margin-right: 25px;" id="card"/>
+                    <img src="https://deckofcardsapi.com/static/img/back.png" alt="" style="height: 350px;" id="heart">
+    
+                </div>
+                <h3 class="slide-B" style="left: 10.6%;">Mayor</h3>
+                <h3 class="slide-B" style="left: 26%;">Menor</h3>
+                <h3 class="slide-T" style="top: 75%; left: 15%;">Puntaje: {{this.score}}</h3>
+            }
+
+            <div class="message" id="msg">
+                
+                <div>
+                  <br><br>
+                    @if(isGameOver){
+                        <p>¡Se quedó sin vidas!</p>
+                        <p>Su puntaje total es de {{this.score}} puntos</p>
+                        <p>Más suerte la próxima.</p>
+                    }
+                </div>  
+            </div>
+            <button class="restartBtn pulse"><i class="fa-solid fa-rotate" style="font-size: 40px;"></i></button>
+    </div>
+</div>

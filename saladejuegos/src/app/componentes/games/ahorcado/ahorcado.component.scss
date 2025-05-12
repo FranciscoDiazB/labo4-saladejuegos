@@ -1,0 +1,400 @@
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+@keyframes pulse {
+    25% {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    75% {
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(1000%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.backgroundGames{
+    background-image: url("../../../assets/backgroundWestern.jpg");
+    position: absolute;
+    z-index: 0;
+    height: 91.7%;
+    width: 100%;
+    animation: 3s ease-in ;
+}
+
+.hangManNoose{
+    background-image: url("../../../assets/hangManNooseV2.jpg");
+    position: fixed;
+    width: 370px;
+    height: 400px;
+    top: 15%;
+    left: 53%;
+    border-radius: 15%;
+    border: 2px solid bisque;
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+}
+
+.Game{
+    font-family: 'westernFont';
+	position: relative;
+	top: 26%;
+	left: 16%;
+	margin: -150px 0 0 -150px;
+    border-radius: 0%;
+	width:1600px;
+	height:700px;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+	border: 2px solid bisque;
+	padding: 30px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.h1-title{
+    font-size: 120px;
+    position: relative;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 40px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
+}
+
+.letterBtn{
+    background-color: bisque;
+    position: relative;
+    width: 45px;
+    height: 40px;
+    border-radius: 15%;
+    margin-right: 7px;
+    margin-bottom: 7px;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+    font-size: 25px;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+
+    &:hover{
+        background-color: brown;
+        color: bisque;
+    }
+
+    &:disabled{
+        background-color: transparent;
+        color: transparent;
+        box-shadow: none;
+    }
+}
+
+.keyboard{
+    position: relative;
+    width: 585px;
+    height: 200px;
+    top: 10%;
+    left: 5%;
+    padding: 30px;
+    border: 2px solid black;
+    background: rgba(184, 20, 20, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+}
+
+.letterSpace{
+    display: block;
+    width: 45px;
+    height: 15px;
+    border: 1px solid bisque;
+    background-color: rgba(184, 20, 20, 0.603);
+    position: fixed;
+    top: 85%;
+    animation: 4s ease-out 0s 1 slideInFromRight;
+}
+
+.lastRow{
+    width: 67.3px;
+}
+
+.letterGuessedRight{
+    position: fixed; 
+    top: 74%; 
+    color: bisque; 
+    font-size: 45px;
+    animation: 1.2s ease-out 0s 1 slideInFromTop;
+}
+
+i{
+    position: relative;
+    font-size: 40px;
+    color: bisque;
+    animation: 1s ease-in-out 0s 1 fadeInOpacity;
+    text-shadow: 5px 5px 5px black;
+}
+
+h3{
+    font-size: 60px;
+    left: 2.5%;
+    position: fixed;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 4s;
+}
+
+.fade-in-body {
+    opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+.shake-low{
+    animation: shake 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.shake-medium{
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+}
+
+.shake-high{
+    animation: shake .5s;
+    animation-iteration-count: infinite;
+}
+
+.remove-heart{
+    visibility: hidden;
+}
+
+.head{
+    width: 65px;
+    height: 65px;
+    background-color: black;
+    border-radius: 50%;
+    position: fixed;
+    top: 31.1%;
+    left: 62.5%;
+}
+
+.torso {
+    width: 60px;
+    height: 120px;
+    background-color: black;
+    position: fixed;
+    top: 41.1%;
+    left: 62.8%;
+    border-top-left-radius: 25%;
+    border-top-right-radius: 25%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.leftarm {
+    width: 100px;
+    height: 22px;
+    background-color: black;
+    position: fixed;
+    top: 48%;
+    left: 58%;
+    transform: rotate(-45deg);
+    border-bottom-left-radius: 100%;
+    border-top-left-radius: 100%;
+}
+
+.rightarm {
+    width: 100px;
+    height: 22px;
+    background-color: black;
+    position: fixed;
+    top: 47.8%;
+    left: 65%;
+    transform: rotate(45deg);
+    border-bottom-right-radius: 100%;
+    border-top-right-radius: 100%;
+}
+
+.leftleg {
+    width: 30px;
+    height: 100px;
+    background-color: black;
+    position: fixed;
+    top: 55%;
+    left: 63%;
+    transform: rotate(20deg);
+    transform-origin: top;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+}
+
+.rightleg {
+    width: 30px;
+    height: 100px;
+    background-color: black;
+    position: fixed;
+    top: 55%;
+    left: 64.2%;
+    transform: rotate(-20deg);
+    transform-origin: top;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+}
+
+.leftfoot {
+    width: 35px;
+    height: 15px;
+    background-color: black;
+    position: fixed;
+    top: 66%;
+    left: 59.9%;
+    transform: rotate(8deg);
+    border-top-left-radius: 50%;
+}
+
+.rightfoot {
+    width: 35px;
+    height: 15px;
+    background-color: black;
+    position: fixed;
+    top: 66%;
+    left: 66.9%;
+    transform: rotate(-8deg);
+    border-top-right-radius: 50%;
+}
+
+.drop{
+	position:fixed;
+	background-color: lightblue;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.44);
+	width: 5px;
+	height: 5px;		
+	border-radius:0% 100% 100% 100%;
+    transform: rotate(45deg);
+}
+
+.message{
+    width: 650px;
+    height: 300px;
+    background-color: bisque;
+    border: 5px solid rgba(190, 12, 12, 0.685);
+    border-radius: 15%;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 6%;
+    visibility: hidden;
+    transform: scale(1);
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-msg{
+    visibility: visible;
+    top: 30%;
+    transform: scale(1);
+}
+
+p{
+    font-size: 45px;
+    
+}
+
+.restartBtn{
+    background-color: transparent;
+    position: fixed;
+    top: 5%;
+    left: 93.4%;
+    width: 75px;
+    height: 67px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+    
+.pulse:hover {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: infinite; 
+}  

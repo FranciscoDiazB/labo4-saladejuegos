@@ -1,0 +1,256 @@
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+@keyframes pulse {
+    25% {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    75% {
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.img-Card{
+    animation: 3s ease-in 0s 1 slideInFromRight;
+}
+
+.img-Deck{
+    animation: 3s ease-in 0s 1 slideInFromRight;
+}
+
+i{
+    position: relative;
+    font-size: 60px;
+    color: bisque;
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+    text-shadow: 5px 5px 5px black;
+}
+
+.backgroundGames{
+    background-image: url("../../../assets/backgroundWestern.jpg");
+    position: absolute;
+    z-index: 0;
+    height: 91.7%;
+    width: 100%;
+    animation: 3s ease-in ;
+}
+
+.Game{
+    font-family: 'westernFont';
+	position: relative;
+	top: 26%;
+	left: 16%;
+	margin: -150px 0 0 -150px;
+    border-radius: 0%;
+	width:1600px;
+	height:700px;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+	border: 2px solid bisque;
+	padding: 30px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.h1-title{
+    font-size: 120px;
+    position: relative;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 30px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
+}
+
+.upArrow{
+    background-image: url("../../../assets/backGroundArrowUpwards.jpg");
+    width: 200px;
+    height: 200px;
+    border-radius: 15%;
+}
+
+.downArrow{
+    background-image: url("../../../assets/backGroundArrowDownwards.jpg");
+    width: 200px;
+    height: 200px;
+    border-radius: 15%;
+}
+
+h3{
+    font-size: 60px;
+    top: 30%;
+    position: fixed;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+}
+
+.slide-B{
+    animation: 3s ease-out 0s 1 slideInFromBelow;
+}
+
+.slide-T{
+    animation: 3s ease-out 0s 1 slideInFromTop;
+}
+
+.deckStyle{
+    padding: 30px;
+    border: 2px solid black;
+    background: rgba(184, 20, 20, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+    border-radius: 15%;
+}
+
+.pulse:hover {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: infinite; 
+}  
+
+.lives{
+    position: fixed;
+    top: 35%;
+    left: 85%;
+    padding: 25px;
+    background-color: transparent;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+}
+
+.one-left{
+    animation: shake 0.1s;
+    animation-iteration-count: infinite;
+}
+
+.two-left{
+    animation: shake 0.2s;
+    animation-iteration-count: infinite;
+}
+
+.three-left{
+    animation: shake 0.7s;
+    animation-iteration-count: infinite;
+}
+
+.four-left{
+    animation: shake 1.2s;
+    animation-iteration-count: infinite;
+}
+
+.message{
+    width: 650px;
+    height: 300px;
+    background-color: bisque;
+    border: 5px solid rgba(190, 12, 12, 0.685);
+    border-radius: 15%;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 2%;
+    visibility: hidden;
+    transform: scale(1);
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-msg{
+    visibility: visible;
+    top: 32%;
+    transform: scale(1);
+}
+
+.restartBtn{
+    background-color: transparent;
+    position: fixed;
+    top: 5%;
+    left: 93.4%;
+    width: 75px;
+    height: 67px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+
+p{
+    font-size: 45px;
+    
+}
