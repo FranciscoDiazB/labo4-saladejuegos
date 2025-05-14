@@ -7,6 +7,7 @@ import { AhorcadoComponent } from './componentes/games/ahorcado/ahorcado.compone
 import { MayormenorComponent } from './componentes/games/mayormenor/mayormenor.component';
 import { ShooterComponent } from './componentes/games/shooter/shooter.component';
 import { PreguntadosComponent } from './componentes/games/preguntados/preguntados.component';
+import { ChatComponent } from './componentes/chat/chat.component';
 
 export const routes: Routes = [
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path: 'ahorcado', component: AhorcadoComponent},
     {path: 'mayormenor', component: MayormenorComponent}, 
     {path: 'shooter', component:ShooterComponent},
-    {path: 'preguntados', component:PreguntadosComponent}
+    {path: 'preguntados', component:PreguntadosComponent},
+    {path: 'chat', component:ChatComponent}
 
 ];

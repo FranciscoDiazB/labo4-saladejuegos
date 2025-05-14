@@ -3,7 +3,6 @@ import { PositionLetter } from './position-letter';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../../services/supabase.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ahorcado',
@@ -13,7 +12,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AhorcadoComponent implements OnInit{
 
-  randomWord:string = "HORACIO";
+  randomWord:string = "";
+  guessingWords:string[] = ['ERRADO','TRASLADAR','TRONCO','SOL','CINCO','MARCOS','JUSTO','KEVIN','SEKIRO'];
   letterGuessedRight:PositionLetter[] = [];
   countRightLetters:number = 0;
   gameLost:boolean = false;
@@ -22,6 +22,7 @@ export class AhorcadoComponent implements OnInit{
   wrongLetter:boolean = false;
   countWrongAnswers:number = 0;
   points:number = 0;
+  randomNumber!:number;
   substractPoints:number = 0;
   letters:string[] = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 
     'z', 'x', 'c', 'v', 'b', 'n', 'm']
@@ -29,6 +30,7 @@ export class AhorcadoComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.randomWord.length);
     this.resetFlags();
+    this.pickRandomWord();
   }
 
   constructor(private router: Router){
@@ -45,6 +47,23 @@ export class AhorcadoComponent implements OnInit{
     this.resetValues();
     this.enabledKeyboard();
     this.removeGameSaved();
+    this.pickRandomWord();
+  }
+
+  pickRandomWord(){
+    console.log('Array: ' + this.guessingWords.length);
+    
+    this.randomNumber =  Math.floor(Math.random() * this.guessingWords.length);
+
+    for(let i = 0; i < this.guessingWords.length; i++){
+
+      if(this.randomNumber == i){
+
+        this.randomWord = this.guessingWords[i];
+        this.guessingWords.splice(this.guessingWords.indexOf(this.randomWord), 1);
+      }
+    }
+    console.log(this.randomWord);
   }
 
   guessLetter(letter:string){
@@ -146,7 +165,7 @@ export class AhorcadoComponent implements OnInit{
       else{
       }
     });
-    console.log(this.points)
+    this.showGameSaved();
   }
 
   modifyHeart(frequency:number){

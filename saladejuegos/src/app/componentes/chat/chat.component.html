@@ -1,0 +1,35 @@
+
+
+@if (supabase.currentUser()?.email != null) {
+
+  <button class="floatBtn pulse" (click)="openCloseChat()"><i style="font-size: 50px; color: bisque;" class="fa-solid fa-comments"></i></button>
+  
+  <div class="chat-container" id="chat">
+  
+    <div class="chat-box" #chatBox>
+  
+      @for (msg of messages; track $index) {
+  
+  
+        <div [ngClass]="{'chat-myUser': msg.username == supabase.currentUser()?.email , 'chat-anotherUser': msg.username != supabase.currentUser()?.email}">
+  
+            <p style="font-size: 25px; color: crimson; margin-bottom: -5px;"><i class="fa-solid fa-hat-cowboy"></i> {{ msg.username.split('@',1)[0] }}: </p>
+            <p style="line-height: 15px;">{{ msg.context }}</p>
+            <p style="font-size: 15px; position: relative; left: 85%; margin-bottom: -5px;">{{msg.inserted_at}}</p>
+  
+        </div>
+      }
+    </div>
+
+    
+    <div class="input-and-button">
+      <p style="font-size: 20px; position: relative; color: bisque; top: 90%; left: 4%; margin-bottom: -1px;">{{newMessage.length}}/150</p>
+      <input class="input-chat-game" type="text" maxlength="150" [(ngModel)]="newMessage" placeholder=" Escriba un mensaje...">
+      <button class="btn-send" (click)="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+    
+  </div>
+}
+
+
+

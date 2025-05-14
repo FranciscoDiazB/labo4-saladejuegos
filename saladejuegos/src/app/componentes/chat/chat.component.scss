@@ -1,0 +1,189 @@
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+@keyframes pulse {
+    25% {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    75% {
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(10%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.input-and-button{
+    position: relative;
+    top: 4.5%;
+    left: 3%;
+}
+
+.chat-myUser{
+    position: relative;
+    right: -45%;
+    min-width: none;
+    max-width: 210px;
+    border-radius: 15%;
+    background-color: bisque;
+    color: black;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border: 3px solid black;
+    overflow-x: hidden;
+    animation: .4s ease-in 0s 1 slideInFromBelow;
+}
+
+.chat-anotherUser{
+    position: relative;
+    left: 0%;
+    min-width: none;
+    max-width: 210px;
+    border-radius: 15%;
+    background-color: burlywood;
+    border: 3px solid black;
+    color: black;
+    padding: 10px;
+    overflow-x: hidden;
+    font-size: 20px;
+    margin-bottom: 10px;
+    animation: .4s ease-in 0s 1 slideInFromBelow;
+}
+
+h1{
+    font-size: 25px;
+}
+
+.chat-box{
+    position: relative;
+    max-height: 470px;
+    top: 3%;
+    overflow: auto;
+    padding: 15px;
+    border: 1px solid bisque;
+    border-radius: 5%;
+}
+
+.chat-box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+}
+
+.btn-send{
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 15%;
+    background-color: rgba(190, 12, 12, 0.685);
+    color: bisque;
+    border-color: bisque;
+
+    &:hover{
+        transition: 1s;
+        background-color: black;
+        border-color: bisque;
+        color: #E73332;
+    }
+}
+
+.input-chat-game{
+    margin-right: 30px;
+    position: relative;
+    left: 3%;
+    font-size: 20px;
+    width: 300px; 
+    background-color: bisque;
+    border-radius: 2%;
+    margin-bottom: 25px;
+    height: 40px;
+
+    &:focus{
+        background-color: black;
+        border-color: bisque;
+        color: bisque;
+    }
+}
+
+i{
+    font-size: 20px;
+}
+
+  .chat-container {
+    font-family: 'westernFont';
+    position: absolute;
+    width: 450px;
+    height: 600px;
+    border-radius: 10%;
+    top: 55%;
+    left:75%;
+    background: rgba(184, 20, 20, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+    border: 2px solid black;
+    padding: 15px;
+    //visibility: hidden;
+    transform: scale(0.0000001);
+    transition: transform 0.4s, top 0.4s;
+    z-index: 2;
+  }
+
+  .open-chat{
+    //visibility: visible;
+    //animation: 0.4s ease-in 0s 1 slideInFromBelow;
+    transform: scale(1);
+    top: 25%;
+    z-index: 5000;
+  }
+  
+  .floatBtn{
+    background-color: transparent;
+    position: fixed;
+    top: 87%;
+    left: 94%;
+    width: 90px;
+    height: 80px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+
+    &:hover{
+        background-color: brown;
+    }
+
+.pulse:hover {
+        -webkit-animation-name: pulse;
+        animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: infinite; 
+    }
+}

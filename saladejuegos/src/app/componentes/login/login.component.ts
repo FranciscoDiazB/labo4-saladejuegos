@@ -69,12 +69,12 @@ redirtcToRegister(path:string){
 completeUser(user:string){
 
   if(user =='uno'){
-    this.email = 'userone@gmail.com';
-    this.password = 'userone1';
+    this.email = 'kevin@gmail.com';
+    this.password = 'kevin1234';
   }
   else{
-    this.email = 'usertwo@gmail.com';
-    this.password = 'usertwo2';
+    this.email = 'donovan@yahoo.com.ar';
+    this.password = 'donovan1234';
   }
 }
 

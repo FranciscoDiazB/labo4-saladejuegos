@@ -161,7 +161,6 @@ export class PreguntadosComponent {
   showGameSaved(){
     const element = document.getElementById("game-saved");
     element?.classList.add('open-gameSaved');
-    this.closeMessage();
   }
 
   removeGameSaved(){
