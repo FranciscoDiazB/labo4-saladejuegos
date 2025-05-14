@@ -19,6 +19,10 @@
         
                 </div>
             }
+            @else {
+                <button class="floatBtn" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
+                <button class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+            }
                 <div style="position: relative; left: 7%;">
                     <br><br><br><br><br>
                     <button class="upArrow pulse" (click)="guess(true)" style="margin-right: 50px;"></button>
@@ -47,6 +51,9 @@
                     }
                 </div>  
             </div>
-            <button class="restartBtn pulse"><i class="fa-solid fa-rotate" style="font-size: 40px;"></i></button>
+
+            <div class="gameSaved" id="game-saved">
+                <p style="font-size: 45px;">¡Partida guardada con éxito!</p>
+            </div>
     </div>
 </div>

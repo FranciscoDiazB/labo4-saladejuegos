@@ -1,0 +1,78 @@
+
+<div class="backgroundGames">
+    <div class="Game">
+
+        <h1 class="h1-title">Preguntados</h1>
+
+       @if(supaBase.currentUser() == null){
+        <h3 class="h3-points slide-B" style="top: 40%;">Para poder jugar al juego de Preguntados, primero tiene que iniciar sesión.</h3>
+        <h3 class="h3-points slide-B" style="top: 60%">En caso de no tener un usuario creado, registrarse...</h3>
+       }
+       @else {
+        <h3 class="h3-points" id="question" style="top: 25%; left: 7%;">¿Qué personaje es?</h3>
+
+        <div class="imgHolder">
+            <img [src]="currentCharacter.imageUrl" [alt]="currentCharacter.fullName" class="character-image" />
+        </div>
+
+        <h1 class="h3-points"
+                    style="top:5%; right: 5%;">Puntaje:
+                    {{this.points}}</h1>
+
+        <div class="containerButtons">
+
+            @for (item of options; track $index) {
+    
+                <button class="btnCharacter" id="button" (click)="selectAnswer(item)" [disabled]="selectedAnswer">
+                  {{ item }}
+                </button>
+                <br>
+            }
+        </div>
+
+        @if(lives > 0){
+
+            <div class="lives">
+            
+                @for (item of [].constructor(lives); track $index) {
+                    <i style="color: bisque;" class="fa-solid fa-heart"></i><br>
+                }
+    
+            </div>
+
+            @if (selectedAnswer != null) {
+
+                <button class="floatBtn" (click)="next()"><i style="font-size: 80px;" class="fa-solid fa-forward"></i></button>
+            }
+            
+        }
+        @else {
+            <button class="floatBtn" (click)="restartGame()"><i style="font-size: 80px;" class="fa-solid fa-rotate"></i></button>
+            <button class="floatBtn" style="top: 58%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+        }
+
+        <div class="message" id="msg">
+            
+            <div>
+              @if(isCorrect && lives > 0){
+                <p class="correct">¡Respuesta Correcta! Se sumaron 15 puntos al puntaje total.</p>  
+              }
+              @else if(!isCorrect && lives > 0) {
+                <p class="wrong">¡Respuesta Incorrecta! La respuesta correcta era: "{{correctAnswer}}".</p>   
+                <p class="wrong">Tiene {{lives}} <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> restantes.</p>             
+              }
+              @else if(lives == 0){
+                <p>¡Juego Finalizado! Ya no le quedan más <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> disponibles.</p>
+                <p>Su puntaje total es de {{this.points}} puntos.</p>
+                <p>Más suerte la próxima.</p>   
+              }           
+            </div>  
+        </div>
+
+        <div class="gameSaved" id="game-saved">
+            <p style="font-size: 45px;">¡Partida guardada con éxito!</p>
+        </div>
+       }
+
+    </div>
+</div>

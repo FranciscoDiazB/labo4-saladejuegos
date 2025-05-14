@@ -162,4 +162,25 @@ p{
     font-size: 25px;
 }
 
+.btnLink{
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 30px;
+    margin-top: 35px;
+    width: 59%;
+    transition: 1s;
+    color: bisque;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+    text-shadow: 5px 5px 5px black;
+
+    &:hover{
+        text-shadow: 10px 10px 10px rgba(190, 12, 12, 0.685);
+        transform: scale(1.05);
+    }
+
+    &:focus{
+        color: black;
+    }
+}
+
 

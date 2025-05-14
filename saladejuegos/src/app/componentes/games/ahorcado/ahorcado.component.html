@@ -8,34 +8,27 @@
             <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
         }
         @else {
-            <!-- <div class="lives">
-                <i class="fa-solid fa-heart" style="margin-left: 15px;" *ngIf="this.countLives >= 1"></i>
-                <i class="fa-solid fa-heart" style="animation-duration: 3s;" *ngIf="this.countLives >= 2"></i>
-                <i class="fa-solid fa-heart" style="animation-duration: 4s;" *ngIf="this.countLives == 3"></i>
-            </div> -->
     
             @if (countWrongAnswers < 8 && countWrongAnswers >= 1) {
                 
                 <i class="fa-solid fa-heart" style="position: fixed;font-size: 60px; top: 24%; left: 69%; z-index: 2000;" id="heart"></i>
             }
             @else if(countWrongAnswers == 8){
-                <i class="fa-solid fa-heart-crack" style="position: fixed;font-size: 60px; top: 24%; left: 69%; z-index: 2000;"></i>
+                <i class="fa-solid fa-heart-crack" style="position: fixed;font-size: 60px; top: 24%; left: 69%; z-index: 2000;" id="cracked-heart"></i>
             }
             
             <div class="hangManNoose">
-                    <div class="head fade-in-body" *ngIf="this.countWrongAnswers >= 1" id="head"></div>
-                    <div class="torso fade-in-body" *ngIf="this.countWrongAnswers >= 2" id="torso"></div>
-                    <div class="drop" style="top: 32%; left: 65%;" *ngIf="this.countWrongAnswers >= 2" id="drop1"></div>
-                    <div class="leftarm fade-in-body" *ngIf="this.countWrongAnswers >= 3" id="leftarm"></div>
-                    <div class="rightarm fade-in-body" *ngIf="this.countWrongAnswers >= 4" id="rightarm"></div>
-                    <div class="drop" style="top: 33%; left: 65.5%;" *ngIf="this.countWrongAnswers >= 4" id="drop2"></div>
-                    <div class="leftleg fade-in-body" *ngIf="this.countWrongAnswers >= 5" id="leftleg"></div>
-                    <div class="rightleg fade-in-body" *ngIf="this.countWrongAnswers >= 6" id="rightleg"></div>
-                    <div class="drop" style="top: 34%; left: 65%;" *ngIf="this.countWrongAnswers >= 6" id="drop3"></div>
-                    <div class="leftfoot fade-in-body" *ngIf="this.countWrongAnswers >= 7" id="leftfoot"></div>
-                    <div class="rightfoot fade-in-body" *ngIf="this.countWrongAnswers >= 8"></div>
-                    <!-- <i class="fa-solid fa-xmark" style="top: 33.5%; left: 63.2%;" *ngIf="this.countWrongAnswers >= 8"></i>
-                    <i class="fa-solid fa-xmark" style="top: 33.5%; left: 64.7%;" *ngIf="this.countWrongAnswers >= 8"></i>-->
+                    <div class="head" id="head"></div>
+                    <div class="torso" id="torso"></div>
+                    <div class="drop" style="top: 32%; left: 65%;" id="drop1"></div>
+                    <div class="leftarm" id="leftarm"></div>
+                    <div class="rightarm" id="rightarm"></div>
+                    <div class="drop" style="top: 33%; left: 65.5%;" id="drop2"></div>
+                    <div class="leftleg" id="leftleg"></div>
+                    <div class="rightleg" id="rightleg"></div>
+                    <div class="drop" style="top: 34%; left: 65%;" id="drop3"></div>
+                    <div class="leftfoot" id="leftfoot"></div>
+                    <div class="rightfoot" id="rightfoot"></div>
             </div>
     
             @for (item of this.letterGuessedRight; track $index) {
@@ -55,7 +48,7 @@
     
                 </div>
             }
-    
+
             <div class="letterSpace" style="right: 46%;" *ngIf="this.randomWord.length >= 1"></div>
             <div class="letterSpace fade-in" style="right: 42%;" *ngIf="this.randomWord.length >= 2"></div>
             <div class="letterSpace" style="right: 38%;" *ngIf="this.randomWord.length >= 3"></div>
@@ -68,38 +61,45 @@
             <div class="letterSpace fade-in" style="right: 10%;" *ngIf="this.randomWord.length >= 10"></div>
     
             <div class="keyboard">
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Q')">Q</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('W')">W</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('E')">E</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('R')">R</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('T')">T</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Y')">Y</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('U')">U</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('I')">I</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('O')">O</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('P')">P</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Q')" id="q">Q</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('W')" id="w">W</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('E')" id="e">E</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('R')" id="r">R</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('T')" id="t">T</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Y')" id="y">Y</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('U')" id="u">U</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('I')" id="i">I</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('O')" id="o">O</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('P')" id="p">P</button>
                 <br>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('A')">A</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('S')">S</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('D')">D</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('F')">F</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('G')">G</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('H')">H</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('J')">J</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('K')">K</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('L')">L</button>
-                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Ñ')">Ñ</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('A')" id="a">A</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('S')" id="s">S</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('D')" id="d">D</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('F')" id="f">F</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('G')" id="g">G</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('H')" id="h">H</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('J')" id="j">J</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('K')" id="k">K</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('L')" id="l">L</button>
+                <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Ñ')" id="ñ">Ñ</button>
                 <br>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('Z')">Z</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('X')">X</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('C')">C</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('V')">V</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('B')">B</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('N')">N</button>
-                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('M')">M</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('Z')" id="z">Z</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('X')" id="x">X</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('C')" id="c">C</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('V')" id="v">V</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('B')" id="b">B</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('N')" id="n">N</button>
+                <button class="letterBtn lastRow" onclick="this.disabled = true" (click)="this.guessLetter('M')" id="m">M</button>
             </div>
             <br><br><br><br>
             <h1 class="h1-title" style="font-size: 70px; left: 10%;">Puntaje: {{this.points}}</h1>
+
+            <!-- @for(item of this.getLetters(); track $index){
+
+                <div style="width: 300px; align-items: center; justify-content: center;">
+                    <div class="letterSpace"></div>
+                </div>
+            } -->
         
             <div class="message" id="msg">
                 
@@ -113,10 +113,19 @@
                         <p>¡Felicitaciones! Adivinó la palabra "{{this.randomWord}}".</p>    
                         <p>Su puntaje total es de {{this.points}} puntos</p>         
                     }
+
                 </div>  
             </div>
     
-            <button class="restartBtn pulse" (click)="restartGame()"><i class="fa-solid fa-rotate"></i></button>
+            @if(gameLost || gameWon) {
+                        
+                <button class="floatBtn" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
+                <button class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+            }
+
+            <div class="gameSaved" id="game-saved">
+                <p style="font-size: 45px;">¡Partida guardada con éxito!</p>
+            </div>
         }
     </div>
 

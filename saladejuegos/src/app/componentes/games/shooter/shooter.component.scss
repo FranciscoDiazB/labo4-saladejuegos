@@ -79,23 +79,63 @@
 	}
 }
 
-.img-Card{
-    animation: 3s ease-in 0s 1 slideInFromRight;
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 80;
+    }
 }
 
-.img-Deck{
-    animation: 3s ease-in 0s 1 slideInFromRight;
-}
+.q
 
-i{
+.hand-Gun{
+    background-image: url("../../../assets/handGunFP2.png");
     position: relative;
-    font-size: 60px;
-    color: bisque;
-    animation: 3s ease-in-out 0s 1 fadeInOpacity;
-    text-shadow: 5px 5px 5px black;
+    width: 150px;
+    height: 150px;
+    top: 65%;
+    left: 10%;
 }
 
-.backgroundGames{
+.gun{
+    background-image: url("../../../assets/handGunFP2.png");
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    top: 69%;
+    left: 62%;
+}
+
+.target{
+    background-image: url("../../../assets/sheriffBadgeLogo.png");
+    position: absolute;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: brown;
+    border: 1px solid bisque;
+    border-radius: 50%;
+    opacity: 80;
+    animation: fadeInOpacity .2s ease-in;
+    cursor: url("../../../assets/targetCrosshair.png") 16 16, crosshair;
+}
+
+.shooter{
+    background-image: url("../../../assets/shooterBack.jpg");
+    position: fixed;
+    height: 425px;
+    width: 950px;
+    top: 30%;
+    left: 15%;
+    border-radius: 10%;
+    border: 2px solid black;
+    cursor: url("../../../assets/targetCrosshair.png") 16 16, crosshair;
+}
+
+.divGame {
     background-image: url("../../../assets/backgroundWestern.jpg");
     position: absolute;
     z-index: 0;
@@ -104,10 +144,10 @@ i{
     animation: 3s ease-in ;
 }
 
-.Game{
+.Game {
     font-family: 'westernFont';
-	position: relative;
-	top: 26%;
+	position: fixed;
+	top: 32.1%;
 	left: 16%;
 	margin: -150px 0 0 -150px;
     border-radius: 0%;
@@ -122,97 +162,90 @@ i{
     animation: 1s ease-out 0s 1 slideInFromTop;
 }
 
-.h1-title{
-    font-size: 120px;
-    position: relative;
+.btn-Start{
+    position: fixed;
+    top: 40%;
+    left: 18%;
+    background-color: rgba(190, 12, 12, 0.685);
+    font-size: 90px;
+    margin-top: 15px;
+    width: 59%;
+    border-color: bisque;
+    transition: 1s;
     color: bisque;
-    text-shadow: 5px 5px 5px black;
-    margin-bottom: 30px;
-    animation: 2s ease-out 0s 1 slideInFromTop;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
+
+    &:hover{
+        background-color: black;
+        border-color: bisque;
+        color: #E73332;
+    }
 }
 
-.upArrow{
-    background-image: url("../../../assets/backGroundArrowUpwards.jpg");
-    width: 200px;
-    height: 200px;
-    border-radius: 15%;
-}
-
-.downArrow{
-    background-image: url("../../../assets/backGroundArrowDownwards.jpg");
-    width: 200px;
-    height: 200px;
-    border-radius: 15%;
-}
-
-h3{
+.h3-points{
     font-size: 60px;
-    top: 30%;
     position: fixed;
     color: bisque;
     text-shadow: 5px 5px 5px chocolate;
 }
 
-.slide-B{
-    animation: 3s ease-out 0s 1 slideInFromBelow;
+.h1-title{
+    font-size: 120px;
+    position: relative;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 40px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
 }
 
-.slide-T{
-    animation: 3s ease-out 0s 1 slideInFromTop;
-}
-
-.deckStyle{
-    padding: 30px;
-    border: 2px solid black;
+.fadeIn{
     background: rgba(184, 20, 20, 0.603);
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(14.5px);
 	-webkit-backdrop-filter: blur(14.5px);
-    border-radius: 15%;
     animation: 3s ease-in-out 0s 1 fadeInOpacity;
 }
 
-.pulse:hover {
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
-    -webkit-animation-duration: 1.5s;
-    animation-duration: 1.5s;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: infinite; 
-}  
-
-.lives{
-    position: fixed;
-    top: 35%;
-    left: 85%;
-    padding: 25px;
+.restartBtn{
     background-color: transparent;
+    position: fixed;
+    top: 5%;
+    left: 93.4%;
+    width: 75px;
+    height: 67px;
     border-radius: 15%;
     border: transparent;
     box-shadow: 5px 3px 15px black;
     animation: 3s ease-in-out 0s 1 fadeInOpacity;
+
+    &:hover{
+        background-color: brown;
+    }
 }
 
-.one-left{
-    animation: shake 0.1s;
-    animation-iteration-count: infinite;
+.floatBtn{
+    background-color: transparent;
+    color: bisque;
+    position: absolute;
+    top: 78%;
+    left: 90%;
+    width: 120px;
+    height: 110px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+    animation: 1s ease-in-out 0s 1 fadeInOpacity;
+
+    &:hover{
+        background-color: brown;
+    }
 }
 
-.two-left{
-    animation: shake 0.2s;
-    animation-iteration-count: infinite;
-}
-
-.three-left{
-    animation: shake 0.7s;
-    animation-iteration-count: infinite;
-}
-
-.four-left{
-    animation: shake 1.2s;
-    animation-iteration-count: infinite;
+i{
+    position: relative;
+    font-size: 60px;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
 }
 
 .message{
@@ -222,17 +255,16 @@ h3{
     border: 5px solid rgba(190, 12, 12, 0.685);
     border-radius: 15%;
     text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 2%;
-    visibility: hidden;
-    transform: scale(1);
-    transition: transform 0.4s, top 0.4s;
+    position: absolute;
+    top: 40%;
+    left: 24%;
+    visibility: visible;
+    animation: 0.4s ease-in 0s 1 slideInFromBelow;
 }
 
-.open-msg{
-    visibility: visible;
-    top: 32%;
+.close-msg{
+    visibility: hidden;
+    top: 40%;
     transform: scale(1);
 }
 
@@ -246,8 +278,8 @@ h3{
     border-radius: 15%;
     text-align: center;
     position: absolute;
-    top: 80%;
-    left: 53%;
+    top: 100%;
+    left: 33%;
     visibility: hidden;
     transform: scale(1);
     transition: transform 0.4s, top 0.4s;
@@ -255,28 +287,15 @@ h3{
 
 .open-gameSaved{
     visibility: visible;
-    top: 48%;
+    top: 50%;
     transform: scale(1);
-}
-
-.floatBtn{
-    background-color: transparent;
-    position: fixed;
-    top: 5%;
-    left: 90%;
-    width: 120px;
-    height: 110px;
-    border-radius: 15%;
-    border: transparent;
-    box-shadow: 5px 3px 15px black;
-    animation: 3s ease-in-out 0s 1 fadeInOpacity;
-
-    &:hover{
-        background-color: brown;
-    }
 }
 
 p{
     font-size: 45px;
     
+}
+
+.slide-B{
+    animation: 3s ease-out 0s 1 slideInFromBelow;
 }

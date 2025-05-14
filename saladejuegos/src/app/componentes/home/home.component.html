@@ -10,8 +10,8 @@
 
                 <button class="higherLowerImage pulse" (click)="this.redirctoTo('mayormenor')"></button>
                 <button class="hangManImage pulse" (click)="this.redirctoTo('ahorcado')"></button>
-                <button class="triviaImage pulse"></button>
-                <button class="shooterImage pulse"></button>
+                <button class="triviaImage pulse" (click)="this.redirctoTo('preguntados')"></button>
+                <button class="shooterImage pulse" (click)="this.redirctoTo('shooter')"></button>
             </div>
 
         <br>
@@ -21,11 +21,11 @@
             <h4 style="left: 0%;">Mayor o Menor</h4>
             <h4 style="left: 5%;">Ahorcado</h4>
             <h4 style="left: 11%;">Preguntados</h4>
-            <h4 style="left: 18%;">Shooter</h4>
+            <h4 style="left: 18%;">Punteria</h4>
 
         </div>
 
-        <button class="chatBtn pulse"><i style="font-size: 40px; color: bisque;" class="fa-solid fa-comments"></i></button>
+        <button class="chatBtn pulse"><i style="font-size: 70px; color: bisque;" class="fa-solid fa-comments"></i></button>
         }
         @else if(this.supaBase.currentUser() === null){
 

@@ -1,3 +1,36 @@
+.game-container {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .character-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .correct {
+    color: green;
+  }
+  
+  .wrong {
+    color: red;
+  }
+
 @font-face {
     font-family: "westernFont";
     src: url('../../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
@@ -79,22 +112,6 @@
 	}
 }
 
-.img-Card{
-    animation: 3s ease-in 0s 1 slideInFromRight;
-}
-
-.img-Deck{
-    animation: 3s ease-in 0s 1 slideInFromRight;
-}
-
-i{
-    position: relative;
-    font-size: 60px;
-    color: bisque;
-    animation: 3s ease-in-out 0s 1 fadeInOpacity;
-    text-shadow: 5px 5px 5px black;
-}
-
 .backgroundGames{
     background-image: url("../../../assets/backgroundWestern.jpg");
     position: absolute;
@@ -131,68 +148,150 @@ i{
     animation: 2s ease-out 0s 1 slideInFromTop;
 }
 
-.upArrow{
-    background-image: url("../../../assets/backGroundArrowUpwards.jpg");
-    width: 200px;
-    height: 200px;
-    border-radius: 15%;
+.slide-B{
+    animation: 3s ease-out 0s 1 slideInFromBelow;
 }
 
-.downArrow{
-    background-image: url("../../../assets/backGroundArrowDownwards.jpg");
-    width: 200px;
-    height: 200px;
-    border-radius: 15%;
-}
-
-h3{
+.h3-points{
     font-size: 60px;
-    top: 30%;
     position: fixed;
     color: bisque;
     text-shadow: 5px 5px 5px chocolate;
 }
 
-.slide-B{
-    animation: 3s ease-out 0s 1 slideInFromBelow;
+img{
+    width: 400px;
+    border-radius: 15%;
 }
 
-.slide-T{
-    animation: 3s ease-out 0s 1 slideInFromTop;
-}
-
-.deckStyle{
-    padding: 30px;
+.imgHolder{
+    position: fixed;
+    width: 300px;
+    top: 25%;
+    left: 40%;
+    padding: 25px;
     border: 2px solid black;
     background: rgba(184, 20, 20, 0.603);
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(14.5px);
 	-webkit-backdrop-filter: blur(14.5px);
-    border-radius: 15%;
-    animation: 3s ease-in-out 0s 1 fadeInOpacity;
 }
 
-.pulse:hover {
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
-    -webkit-animation-duration: 1.5s;
-    animation-duration: 1.5s;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: infinite; 
-}  
+.btnCharacter{
+    background-color: rgba(190, 12, 12, 0.685);
+    font-size: 40px;
+    margin-top: 15px;
+    width: 400px;
+    border-color: bisque;
+    transition: 1s;
+    color: bisque;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
+
+    &:hover{
+        background-color: chocolate;
+        color: black;
+    }
+}
+
+.wrong{
+    color: #E73332;
+}
+
+.correct{
+    color: green;
+}
+
+.containerButtons{
+    position: fixed;
+    top: 40%;
+    left: 7%;
+    align-items: center;
+}
+
+.message{
+    width: 450px;
+    background-color: bisque;
+    padding: 15px;
+    border: 5px solid rgba(190, 12, 12, 0.685);
+    border-radius: 15%;
+    padding-top: 20px;
+    text-align: center;
+    position: fixed;
+    top: 80%;
+    left: 35.5%;
+    visibility: hidden;
+    transform: scale(1);
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-msg{
+    visibility: visible;
+    top: 60%;
+    transform: scale(1);
+}
+
+.gameSaved{
+    width: 350px;
+    height: 170px;
+    background-color: black;
+    padding: 15px;
+    color: bisque;
+    border: 5px solid rgba(190, 12, 12, 0.685);
+    border-radius: 15%;
+    text-align: center;
+    position: absolute;
+    top: 80%;
+    left: 63%;
+    visibility: hidden;
+    transform: scale(1);
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-gameSaved{
+    visibility: visible;
+    top: 50%;
+    transform: scale(1);
+}
+
+.floatBtn{
+    background-color: transparent;
+    color: bisque;
+    position: fixed;
+    top: 78%;
+    left: 90%;
+    width: 120px;
+    height: 110px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+    animation: 1s ease-in-out 0s 1 fadeInOpacity;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+
+i{
+    position: relative;
+    font-size: 60px;
+    text-shadow: 5px 5px 5px black;
+}
 
 .lives{
     position: fixed;
     top: 35%;
-    left: 85%;
+    left: 65%;
     padding: 25px;
     background-color: transparent;
     border-radius: 15%;
     border: transparent;
     box-shadow: 5px 3px 15px black;
     animation: 3s ease-in-out 0s 1 fadeInOpacity;
+}
+
+p{
+    font-size: 30px;
+    
 }
 
 .one-left{
@@ -213,70 +312,4 @@ h3{
 .four-left{
     animation: shake 1.2s;
     animation-iteration-count: infinite;
-}
-
-.message{
-    width: 650px;
-    height: 300px;
-    background-color: bisque;
-    border: 5px solid rgba(190, 12, 12, 0.685);
-    border-radius: 15%;
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 2%;
-    visibility: hidden;
-    transform: scale(1);
-    transition: transform 0.4s, top 0.4s;
-}
-
-.open-msg{
-    visibility: visible;
-    top: 32%;
-    transform: scale(1);
-}
-
-.gameSaved{
-    width: 350px;
-    height: 170px;
-    background-color: black;
-    padding: 15px;
-    color: bisque;
-    border: 5px solid rgba(190, 12, 12, 0.685);
-    border-radius: 15%;
-    text-align: center;
-    position: absolute;
-    top: 80%;
-    left: 53%;
-    visibility: hidden;
-    transform: scale(1);
-    transition: transform 0.4s, top 0.4s;
-}
-
-.open-gameSaved{
-    visibility: visible;
-    top: 48%;
-    transform: scale(1);
-}
-
-.floatBtn{
-    background-color: transparent;
-    position: fixed;
-    top: 5%;
-    left: 90%;
-    width: 120px;
-    height: 110px;
-    border-radius: 15%;
-    border: transparent;
-    box-shadow: 5px 3px 15px black;
-    animation: 3s ease-in-out 0s 1 fadeInOpacity;
-
-    &:hover{
-        background-color: brown;
-    }
-}
-
-p{
-    font-size: 45px;
-    
 }

@@ -44,9 +44,26 @@ userLogin(path:string):void{
       element?.classList.add('open-msgError');   
     }
     else{
-      this.router.navigate([path]);
+
+      const userLogin = this.supaBase.currentUser()?.email;
+
+      this.supaBase.supabaseFunctions.schema('public').from('logsLogin').insert([{user : userLogin}]).then(({data , error}) => {
+        if(error){
+          console.log("Error al escribir en la BD");
+          console.log(userLogin);
+          console.log(error.message);
+        }
+        else{
+          this.router.navigate([path]);
+        }
+      });
+
     }
   })
+}
+
+redirtcToRegister(path:string){
+  this.router.navigate([path]);
 }
 
 completeUser(user:string){

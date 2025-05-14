@@ -14,11 +14,11 @@ export class MayormenorComponent implements OnInit {
   deck = inject(CarddeckService);
   supaBase = inject(SupabaseService);
 
-  deckId: string = '';
-  currentCard: any;
-  score: number = 0;
-  message: string = '';
-  isGameOver: boolean = false;
+  deckId:string = '';
+  currentCard:any;
+  score:number = 0;
+  message:string = '';
+  isGameOver:boolean = false;
   lives:number = 5;
   lowerScore:number = 0;
 
@@ -27,20 +27,28 @@ export class MayormenorComponent implements OnInit {
     this.startGame();
   }
 
+  restartGame(){
+    this.lives = 5;
+    this.lowerScore = 0;
+    this.startGame();
+    this.closeMessage();
+    this.removeGameSaved();
+  }
+
   startGame() {
     this.score = 0;
     this.message = '';
     this.isGameOver = false;
 
-    this.deck.getDeck().subscribe((res: any) => {
-      this.deckId = res.deck_id;
+    this.deck.getDeck().subscribe((data: any) => {
+      this.deckId = data.deck_id;
       this.drawInitialCard();
     });
   }
 
   drawInitialCard() {
-    this.deck.getCard(this.deckId).subscribe((res: any) => {
-      this.currentCard = res.cards[0];
+    this.deck.getCard(this.deckId).subscribe((data: any) => {
+      this.currentCard = data.cards[0];
     });
   }
 
@@ -76,8 +84,8 @@ export class MayormenorComponent implements OnInit {
 
     if(this.lives > 0){
       
-      this.deck.getCard(this.deckId).subscribe((res: any) => {
-        const nextCard = res.cards[0];
+      this.deck.getCard(this.deckId).subscribe((data: any) => {
+        const nextCard = data.cards[0];
   
         const currentValue = this.getCardValue(this.currentCard.value);
         const nextValue = this.getCardValue(nextCard.value);
@@ -92,9 +100,9 @@ export class MayormenorComponent implements OnInit {
   
         if (correct) {
           this.score+=7;
-          this.message = '¡Correcto!';
+          this.message = 'Correcto';
         } else {
-          this.message = '¡Fallaste!';
+          this.message = 'Fallaste';
           this.lowerScore++;
           this.score-=this.lowerScore;
           this.lives--;
@@ -120,6 +128,11 @@ export class MayormenorComponent implements OnInit {
     element?.classList.add('open-msg');
   }
 
+  closeMessage(){
+    const element = document.getElementById("msg");
+    element?.classList.remove('open-msg');
+  }
+
   getCardValue(value: string): number {
     const cardMap: any = {
       'ACE': 14,
@@ -128,6 +141,34 @@ export class MayormenorComponent implements OnInit {
       'JACK': 11
     };
     return cardMap[value] || parseInt(value);
+  }
+
+  saveDataGame(){
+
+    const userLogin = this.supaBase.currentUser()?.email;
+
+    this.supaBase.supabaseFunctions.schema('public').from('gamePoints').insert([{user : userLogin, game: 'Mayor o Menor', points: this.score}]).then(({data, error}) =>{
+      if(error){
+        console.log("Error al escribir en la BD");
+        console.log(this.score)
+        console.log(userLogin);
+        console.log(error.message);
+      }
+      else{
+      }
+    });
+    console.log(this.score)
+    this.showGameSaved();
+  }
+
+  showGameSaved(){
+    const element = document.getElementById("game-saved");
+    element?.classList.add('open-gameSaved');
+  }
+
+  removeGameSaved(){
+    const element = document.getElementById("game-saved");
+    element?.classList.remove('open-gameSaved');
   }
 
   constructor(){

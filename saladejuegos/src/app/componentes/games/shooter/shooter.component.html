@@ -1,0 +1,67 @@
+<div class="divGame">
+    <div class="Game">
+
+        <h1 class="h1-title">Punteria</h1>
+
+        @if(supaBase.currentUser() == null){
+            <h3 class="h3-points slide-B" style="top: 40%;">Para poder jugar al juego de Punteria, primero tiene que iniciar sesión.</h3>
+            <h3 class="h3-points slide-B" style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        @else {
+
+            @if(flagStartGame == false){
+            <div>
+                <button class="btn-Start" (click)="startGame()" id="button" >Comenzar a Jugar</button>
+            </div>
+            }
+            @else {
+                <div class="shooter">            
+                    <div class="gun"></div>
+                </div>
+                
+                
+                <h1 class="h3-points"
+                style="top:60%; right: 7%;">Puntaje:
+                {{this.points}}</h1>
+        
+                @if (!this.flagGameOver) {
+        
+                <h2 class="h3-points" id="timer" style="top:40%; right: 10%; border: 2px solid bisque; padding: 20px;">
+                    {{this.timer}} seg</h2>
+                }
+                @else {
+    
+                    <h2 class="h3-points fadeIn" style="top:7%; right: 20%; border: 2px solid bisque; padding: 20px;">
+                        ¡Tiempo Finalizado!</h2>
+                    
+                    <button class="floatBtn" style="top: 5%;" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
+                    <button class="floatBtn" style="top: 78%; left: 2%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+    
+                    <div class="message" id="msg">
+                    
+                        <div>
+                          <br><br>
+                                <p>¡Se quedó sin tiempo!</p>
+                                <p>Su puntaje total es de {{this.points}} puntos</p>
+                                <p>Más suerte la próxima.</p>                
+                        </div>  
+                    </div>
+
+                    <div class="gameSaved" id="game-saved">
+                        <p>¡Partida guardada con éxito!</p>
+                    </div>
+                    
+                } 
+            }
+        }
+
+    </div>
+</div>
+
+@if (supaBase.currentUser() != null) {
+    
+    <div style="z-index: 4000;" *ngFor="let target of this.targets" class="target"
+                [ngStyle]="{'top.px': target.y, 'left.px': target.x}">
+    </div>
+}
+

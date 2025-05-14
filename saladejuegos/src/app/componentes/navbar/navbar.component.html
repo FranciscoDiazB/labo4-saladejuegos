@@ -8,8 +8,8 @@
         <button type="button" class="btn btn-default" routerLink="registro" >Registro</button>
     }
     @else {
-        <h3 style="margin-right: 15px; left: 60%; position: relative;">Usuario: {{this.supaBase.currentUser()?.email}}</h3>
-        <button type="button" class="btn btn-default" style="left: 60%; position: relative;" (click)="signOutSession()">Cerrar Sesion</button>
+        <h3 style="margin-right: 15px; left: 57%; position: relative;"> <i style="margin-right: 10px;" class="fa-solid fa-circle-user"></i>      Usuario: {{this.supaBase.currentUser()?.email}}</h3>
+        <button type="button" class="btn btn-default" style="left: 57%; position: relative;" (click)="signOutSession()">Cerrar Sesion</button>
     }
 
 </div>
