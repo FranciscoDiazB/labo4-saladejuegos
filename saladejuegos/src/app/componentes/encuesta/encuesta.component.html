@@ -1,0 +1,18 @@
+<div class="backgroundHome">
+
+    <div class="Home">
+
+        <h1>Encuesta</h1>
+        
+        @if (this.supaBase.currentUser()) {
+
+        }
+        @else if(this.supaBase.currentUser() === null){
+
+            <h3 style="top: 40%;">Para poder ingresar a la Encuesta, primero tiene que iniciar sesión.</h3>
+            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        
+    </div>
+    
+</div>

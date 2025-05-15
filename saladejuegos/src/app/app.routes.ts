@@ -8,6 +8,8 @@ import { MayormenorComponent } from './componentes/games/mayormenor/mayormenor.c
 import { ShooterComponent } from './componentes/games/shooter/shooter.component';
 import { PreguntadosComponent } from './componentes/games/preguntados/preguntados.component';
 import { ChatComponent } from './componentes/chat/chat.component';
+import { ResultsComponent } from './componentes/results/results.component';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 
 export const routes: Routes = [
 
@@ -16,10 +18,13 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent}, 
     {path: 'quiensoy', component: QuiensoyComponent},
     {path: 'registro', component: RegistroComponent}, 
-    {path: 'ahorcado', component: AhorcadoComponent},
-    {path: 'mayormenor', component: MayormenorComponent}, 
-    {path: 'shooter', component:ShooterComponent},
-    {path: 'preguntados', component:PreguntadosComponent},
-    {path: 'chat', component:ChatComponent}
+    {
+        path: 'games',
+        loadChildren: () => import('./modules/games/games-routing.module').then( m => m.GamesRoutingModule)
+    },
+    {path: 'chat', component: ChatComponent}, 
+    {path: 'resultados', component: ResultsComponent}, 
+    {path: 'encuesta', component: EncuestaComponent}
 
 ];
+

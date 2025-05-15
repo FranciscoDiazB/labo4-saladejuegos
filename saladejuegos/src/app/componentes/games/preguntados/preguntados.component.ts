@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Character, GameofthronesService} from '../../../services/gameofthrones.service';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../../services/supabase.service';
+import { Game, MmobombService } from '../../../services/mmobomb.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -13,6 +14,7 @@ export class PreguntadosComponent {
 
   gotService = inject(GameofthronesService);
   supaBase = inject(SupabaseService);
+  gameService = inject(MmobombService);
 
   characters:Character[] = [];
   characterGuessed:Character[] = [];
@@ -25,11 +27,17 @@ export class PreguntadosComponent {
   lives:number = 5;
   points:number = 0;
 
+  games:Game[] = [];
+  gameGuessed:Game[] = [];
+  currentGame!:Game;
+  notEnoughGames:boolean = false;
+
   constructor() {}
 
   ngOnInit(){
 
     this.getDataAndStartRound();
+    //this.getDataAndStartRoundGame();
   }
 
   getDataAndStartRound(){
@@ -38,6 +46,43 @@ export class PreguntadosComponent {
       this.newRound();
     });
   }
+
+  // getDataAndStartRoundGame(){
+  //   this.gameService.getGames().subscribe((data)=> {
+  //     this.games = data;
+  //     this.newRoundGame();
+  //   })
+  // }
+
+  // newRoundGame(){
+
+  //   if(this.games.length >= 4){
+      
+  //     this.selectedAnswer = null;
+  //     this.isCorrect = null;
+  
+  //     const randomIndex = Math.floor(Math.random() * this.games.length);
+  //     this.currentGame = this.games[randomIndex];
+  //     this.correctAnswer = this.currentGame.developer;
+  
+      
+  //     this.gameGuessed.push(this.currentGame);
+      
+  //     const incorrectOptions = this.games
+  //     .filter((game) => game.developer !== this.correctAnswer)
+  //     .sort(() => 0.5 - Math.random())
+  //     .slice(0, 3)
+  //     .map((game) => game.developer);
+      
+  //     this.options = [...incorrectOptions, this.correctAnswer].sort();
+
+  //     let indexCurrentChar = this.games.indexOf(this.currentGame);
+  //     this.games.splice(indexCurrentChar, 1);
+  //   }
+  //   else{
+  //     this.notEnoughGames = true;
+  //   }
+  // }
 
   newRound(){
 

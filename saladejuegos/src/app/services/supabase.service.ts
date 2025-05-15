@@ -34,6 +34,26 @@ export class SupabaseService {
       .order('inserted_at', { ascending: true });
   }
 
+  async getPointsFromGame(game:string){
+    let query = this.supabaseFunctions.schema('public')
+        .from('gamePoints')
+        .select('*')
+        .order('points' , {ascending : false})
+
+      if(game){
+        query = query.eq('game', game);
+      }
+
+      const { data, error } = await query;
+
+      if (error) {
+        console.error('Error al obtener los puntajes:', error);
+        return [];
+      }
+    
+      return data;
+  }
+
   async sendMessage(text: string, user: string, hour:string) {
     return await this.supabaseFunctions.schema('public').from('messages').insert([
       {

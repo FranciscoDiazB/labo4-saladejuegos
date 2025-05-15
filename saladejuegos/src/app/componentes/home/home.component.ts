@@ -17,6 +17,9 @@ export class HomeComponent {
   }
 
   redirctoTo(path:string){
+
+    path = 'games/' + path;
+
     this.router.navigate([path]);
   }
 

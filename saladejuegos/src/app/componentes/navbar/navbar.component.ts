@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink} from '@angular/router';
+import { Router, RouterLink} from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
@@ -11,6 +11,10 @@ import { SupabaseService } from '../../services/supabase.service';
 export class NavbarComponent implements OnInit{
 
   supaBase = inject(SupabaseService);
+
+  constructor(private router:Router){
+
+  }
 
   ngOnInit(): void {
     this.supaBase.supabaseFunctions.auth.onAuthStateChange((event, session) =>{
@@ -25,6 +29,15 @@ export class NavbarComponent implements OnInit{
   }
 
   async signOutSession(){
-    await this.supaBase.supabaseFunctions.auth.signOut();
+
+    const { error } = await this.supaBase.supabaseFunctions.auth.signOut();
+    if (!error) {
+      console.log('Cierre de sesión exitoso');
+      this.router.navigate(['/login']);
+    } else {
+      console.error('Error al cerrar sesión:', error);
+    }
   }
+
+
 }

@@ -15,7 +15,7 @@ export class ShooterComponent implements OnDestroy {
   points: number = 0;
   targets: { x: number, y: number }[] = [];
   flagGameOver: boolean = false;
-  timer: number = 10; 
+  timer: number = 15; 
   countClicks:number = 0;
   flagStartGame:boolean = false;
   interval!:NodeJS.Timeout;

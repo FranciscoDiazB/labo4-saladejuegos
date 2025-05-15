@@ -1,0 +1,54 @@
+<div class="backgroundHome">
+
+    <div class="Home">
+
+        <h1>Leaderboards <i class="fa-solid fa-medal"></i></h1>
+        
+        @if (this.supaBase.currentUser()) {
+
+                <button (click)="getLeadersFromAGame('Mayor o Menor')" style="margin-bottom: 10px;" class="higherLowerImage pulse"></button> <h3 style="top: 32.5%;">Mayor o Menor</h3><br>
+                <button (click)="getLeadersFromAGame('Ahorcado')" style="margin-bottom: 10px;" class="hangManImage pulse"></button> <h3 style="top: 49%;">Ahorcado</h3><br>
+                <button (click)="getLeadersFromAGame('Preguntados')" style="margin-bottom: 10px;" class="triviaImage pulse"></button> <h3 style="top: 64%;">Preguntados</h3><br>
+                <button (click)="getLeadersFromAGame('Punteria')" style="margin-bottom: 10px;" class="shooterImage pulse"></button> <h3 style="top: 80%;">Punteria</h3>
+
+                <div style="right: 37.7%; top: 39.7%;" class="ribbon" id="firstPlace">
+                    <i [ngClass]="{'pulse-user': first.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold;" class="fa-solid fa-trophy"></i>
+                    <p [ngClass]="{'red': first.user == this.supaBase.currentUser()?.email}" [ngClass]="" style="margin-bottom: -10px; margin-top: -5px;">{{first.user.split('@',1)[0]}}</p>
+                    <p style="margin-bottom: -5px;">{{first.points}} Puntos</p>
+
+                </div>
+
+                <div class="game-h1" id="game-h1-id">
+                    <h1 style="font-size: 60px;">{{first.game}}</h1>
+                </div>
+
+                <div class="ribbon" id="secondPlace">
+                    <i [ngClass]="{'pulse-user': second.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy"></i>
+                    <p [ngClass]="{'red': second.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{second.user.split('@',1)[0]}}</p>
+                    <p style="margin-bottom: -5px;">{{second.points}} Puntos</p>
+
+                </div>
+
+                <div style="right: 24.4%; top: 54.7%;" class="ribbon" id="thirdPlace">
+                    <i [ngClass]="{'pulse-user': third.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy"></i>
+                    <p [ngClass]="{'red': third.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{third.user.split('@',1)[0]}}</p>
+                    <p style="margin-bottom: -5px;">{{third.points}} Puntos</p>
+
+                </div>
+
+                <div class="leaderboards">
+                    <div class="podium"></div>
+                </div>
+
+                <button class="floatBtn"><i class="fa-solid fa-chart-simple" style="font-size: 80px;"></i></button>
+
+        }
+        @else if(this.supaBase.currentUser() === null){
+
+            <h3 style="top: 40%;">Para poder ingresar a la Encuesta, primero tiene que iniciar sesión.</h3>
+            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        
+    </div>
+    
+</div>
