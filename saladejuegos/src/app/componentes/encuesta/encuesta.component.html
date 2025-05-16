@@ -2,62 +2,166 @@
 
     <div class="Home">        
         @if (this.supaBase.currentUser()) {
-            
-            <form [formGroup]="surveyForm" (ngSubmit)="enviarForm()">
 
-                
-                <div class="all-form" id="form-first-part">
+
+            @if(!startSurvey){
+                <h1 style="font-size: 120px;">Encuesta</h1>
+
+                <h3 style="font-size: 40px; text-shadow: 5px 5px 5px chocolate;">Gracias por tomarte unos minutos para completar esta encuesta. <br>
+                    Tu participación es completamente voluntaria, y nos ayudará a recopilar información valiosa para mejorar. <br>
+                    Las preguntas son breves y no te tomarán más de unos minutos. <br>
+                    ¡Gracias!</h3>
+
+                <button class="floatBtn btn-continue-success" id="button-next" type="button" style="border: 2px solid bisque; font-size: 40px; height: 100px; top: 77%;"
+                (click)="startTheSurvey()">Comenzar <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+
+            }
+            @else {
+                <form [formGroup]="surveyForm" (ngSubmit)="enviarForm()">
+
+                    <div class="first-form" id="form-first-part">
+                        
+                        <h1 style="text-align: center;">{{this.supaBase.currentUser()?.email}}</h1>
                     
-                    <h1 style="text-align: center;">Usuario: {{this.supaBase.currentUser()?.email}}</h1>
-                
-                    <div>
-                        <input [ngClass]="{'error': justName?.hasError('required')}" style="margin-right: 20px;" class="input-form" type="text" name="" id="name" formControlName="name" placeholder="Ingrese su nombre...">
-                            <ng-container *ngIf="justName?.hasError('pattern')">
+                        <div>
+                            <input [ngClass]="{'error': justName?.hasError('required')}" style="margin-right: 20px;" class="input-form" type="text" name="" id="name" formControlName="name" placeholder="Ingrese su nombre...">
+                                <ng-container *ngIf="justName?.hasError('pattern')">
+                                    <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
+                                </ng-container>
+    
+                            <input [ngClass]="{'error': justSurname?.hasError('required')}" class="input-form" type="text" name="" id="name" formControlName="surname" placeholder="Ingrese su apellido...">
+                            <ng-container *ngIf="justSurname?.hasError('pattern')">
                                 <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
                             </ng-container>
-
-                        <input [ngClass]="{'error': justSurname?.hasError('required')}" class="input-form" type="text" name="" id="name" formControlName="surname" placeholder="Ingrese su apellido...">
-                        <ng-container *ngIf="justSurname?.hasError('pattern')">
-                            <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
+                        </div>
+    
+                        <input type="number" [ngClass]="{'error': justPhoneNumber?.hasError('required')}" class="input-form" formControlName="phoneNumber" placeholder="Ingrese número de teléfono...">
+                        <ng-container *ngIf="justPhoneNumber?.hasError('max')">
+                            <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico de hasta 10 caracteres máximo!</p>
                         </ng-container>
+                        <ng-container *ngIf="justPhoneNumber?.hasError('min')">
+                            <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico no puede empezar con 0!</p>
+                        </ng-container>
+    
+                        <i style="position: fixed; left: 7%; top: 29%;" class="fa-solid fa-user"></i>
+                        <input style="position: fixed; top: 50.45%;width: 130px; left: 4%;" type="number" [ngClass]="{'error': justAge?.hasError('required')}" class="input-form" formControlName="age" placeholder="Edad">
+                        <ng-container *ngIf="justAge?.hasError('max') || justAge?.hasError('min')">
+                            <p style="position: fixed; top: 61.8%; left: 3.8%;">¡Entre 18 y 99!</p>
+                        </ng-container>
+    
+                        <button [ngClass]="{'btn-continue-fail': justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                            justPhoneNumber?.invalid , 'btn-continue-success': justName?.valid && justSurname?.valid && justAge?.valid && justPhoneNumber?.valid}" 
+                            [disabled]="justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                            justPhoneNumber?.invalid"
+                        class="floatBtn" id="button-next" type="button" (click)="changeForms('firstToSecond')">Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i></button>
                     </div>
-
-                    <input type="number" [ngClass]="{'error': justPhoneNumber?.hasError('required')}" class="input-form" formControlName="phoneNumber" placeholder="Ingrese número de teléfono...">
-                    <ng-container *ngIf="justPhoneNumber?.hasError('max')">
-                        <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico de hasta 10 caracteres máximo!</p>
-                    </ng-container>
-                    <ng-container *ngIf="justPhoneNumber?.hasError('min')">
-                        <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico no puede empezar con 0!</p>
-                    </ng-container>
-
-                    <i style="position: fixed; left: 7%; top: 29%;" class="fa-solid fa-user"></i>
-                    <input style="position: fixed; top: 50.45%;width: 130px; left: 4%;" type="number" [ngClass]="{'error': justAge?.hasError('required')}" class="input-form" formControlName="age" placeholder="Edad">
-                    <ng-container *ngIf="justAge?.hasError('max') || justAge?.hasError('min')">
-                        <p style="position: fixed; top: 61.8%; left: 3.8%;">¡Entre 18 y 99!</p>
-                    </ng-container>
-
-                    <button [ngClass]="{'btn-continue-fail': justName?.invalid || justSurname?.invalid || justAge?.invalid ||
-                        justPhoneNumber?.invalid , 'btn-continue-success': justName?.valid && justSurname?.valid && justAge?.valid && justPhoneNumber?.valid}" 
-                        [disabled]="justName?.invalid || justSurname?.invalid || justAge?.invalid ||
-                        justPhoneNumber?.invalid"
-                    class="floatBtn" id="button-next" type="button" (click)="changeButtonBorder(true)">Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i></button>
-                </div>
-
-                <div class="all-form-two" id="form-second-part">
-                    <button [ngClass]="{'btn-continue-fail': justName?.invalid || justSurname?.invalid || justAge?.invalid ||
-                        justPhoneNumber?.invalid , 'btn-continue-success': justName?.valid && justSurname?.valid && justAge?.valid && justPhoneNumber?.valid}" 
-                        [disabled]="justName?.invalid || justSurname?.invalid || justAge?.invalid ||
-                        justPhoneNumber?.invalid"
-                    class="floatBtn" id="button-next" type="button" style="left: 7%;" (click)="changeButtonBorder(false)">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
-                    
-                    
-                    <button [ngClass]="{'btn-continue-fail': this.surveyForm.invalid, 'btn-continue-success': this.surveyForm.valid}" 
-                    class="floatBtn" [disabled]="this.surveyForm.valid" type="submit" style="left: 50%;">Guardar Encuesta <i style="font-size: 30px;" class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </div>
-            </form>
-
-
+    
+                    <div class="next-form" id="form-second-part">
+    
+                        <h3 style="font-size: 45px; text-align: center; text-shadow: 5px 5px 5px chocolate;">¿Cuáles de los siguientes géneros de juegos te gustan más?</h3>
+    
+                        <div formGroupName="gameGenres">
+                            <div class="checkbox-wrapper-39" style="position: fixed; top: 30%; left: 12%;">
+                                <label>
+                                  <input type="checkbox" id="disparos" name="generos" value="disparos" formControlName="shooter">
+                                  <h3 style="font-size: 25px;">Shooters</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+                              
+                              <div class="checkbox-wrapper-39" style="position: fixed; top: 30%; left: 42%;">
+                                <label>
+                                  <input type="checkbox" id="deportes" name="generos" value="deportes" formControlName="sport"/>
+                                  <h3 style="font-size: 25px; text-shadow: 5px 5px 5px black;">Deportes</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+                              
+                              <div class="checkbox-wrapper-39" style="position: fixed; top: 30%; left: 72%;">
+                                <label>
+                                  <input type="checkbox" id="souls" name="generos" value="souls" formControlName="soulslike"/>
+                                  <h3 style="font-size: 25px;">Soulslike</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+                              
+                              <div class="checkbox-wrapper-39" style="position: fixed; top: 50%; left: 12%;">
+                                <label>
+                                  <input type="checkbox" id="puzzle" name="generos" value="puzzle" formControlName="puzzle"/>
+                                  <h3 style="font-size: 25px;">Puzzle</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+                              
+                              <div class="checkbox-wrapper-39" style="position: fixed; top: 50%; left: 42%;">
+                                <label>
+                                  <input type="checkbox" id="plataforma" name="generos" value="plataforma" formControlName="platform"/>
+                                  <h3 style="font-size: 25px;">Plataformas</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+                              
+                              <div class="checkbox-wrapper-39" style="position: fixed; top: 50%; left: 72%;">
+                                <label>
+                                  <input type="checkbox" id="sim" name="generos" value="simulacion" formControlName="simulation"/>
+                                  <h3 style="font-size: 25px;">Simulación</h3>
+                                  <span class="checkbox"></span>
+                                </label>
+                              </div>
+    
+                              <ng-container *ngIf="this.gameGenres.invalid">
+                                <p style="position: fixed; top: 72%; left: 12%; text-align: center;">¡Seleccionar como mínimo una opción para continuar!</p>
+                              </ng-container>
+                        </div>
+    
+                        <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 7%;" 
+                        (click)="changeForms('secondToFirst')">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+                               
+                        <button [ngClass]="{'btn-continue-fail': this.gameGenres.invalid, 'btn-continue-success': this.gameGenres.valid}" 
+                        class="floatBtn" [disabled]="this.gameGenres.invalid" type="button" (click)="changeForms('secondToLast')" 
+                        >Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i>
+                        </button>
+    
+                    </div>
+    
+                    <div class="next-form" id="form-last-part">
+    
+                        <div formGroupName="playTime">
+                            
+                            <h3 style="font-size: 45px; text-align: center; text-shadow: 5px 5px 5px chocolate; margin-bottom: -5px;">¿Cuánto tiempo jugás diariamente a los videojuegos?</h3>
+    
+                            <div style="margin-bottom: -5px; left: 2%;" class="radio-group" >
+    
+                                <input type="radio" id="option-one" formControlName="timePlayed" name="timePlayed" value="0-30"><label for="option-one">0 - 30 min</label>
+                                <input type="radio" id="option-two" formControlName="timePlayed" name="timePlayed" value="30-60"><label for="option-two">30 min - 1hs</label>
+                                <input type="radio" id="option-three" formControlName="timePlayed" name="timePlayed" value="60-120"><label for="option-three">1hs - 2hs</label>
+                                <input type="radio" id="option-four" formControlName="timePlayed" name="timePlayed" value="+120"><label for="option-four">Más de 2hs</label>
+        
+                            </div>
+                            <ng-container *ngIf="this.justTimePlayed?.hasError('required')">
+                                <p style="position: relative; left: 0.1%; text-align: center; margin-top: 15px; margin-bottom: -15px;">¡Es requerido seleccionar una opción!</p>
+                            </ng-container>
+        
+                            <h3 style="font-size: 45px; text-align: center; text-shadow: 5px 5px 5px chocolate;">¿Cuál dirías que es la plataforma de juegos más icónica?</h3>
+        
+                            <input style="left: 6%; width: 540px;" [ngClass]="{'error': justQuestions?.hasError('required')}" class="input-form" type="text" name=""
+                             id="question" formControlName="question" placeholder="Ingrese su apellido...">
+                            <ng-container *ngIf="justQuestions?.hasError('pattern')">
+                                    <p style="position: relative; top: 14.5%; left: 22%; margin-top: -10px;">¡No se aceptan caracteres especiales!</p>
+                            </ng-container>
+    
+                        </div>
+    
+                        <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 7%;" 
+                        (click)="changeForms('LastToSecond')">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+                                            
+                        <button [ngClass]="{'btn-continue-fail': this.surveyForm.invalid, 'btn-continue-success': this.surveyForm.valid}" 
+                        class="floatBtn" [disabled]="this.surveyForm.invalid" type="submit" >Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i>
+                        </button>
+                    </div>
+                
+                </form>
+            }
         }
         @else if(this.supaBase.currentUser() === null){
 
