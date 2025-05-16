@@ -18,6 +18,7 @@ export class EncuestaComponent implements OnInit{
   gameGenres!:FormGroup;
   lastPart!:FormGroup;
   startSurvey:boolean = false;
+  questionLenght:string = '';
 
   ngOnInit(): void {
 
@@ -70,9 +71,52 @@ export class EncuestaComponent implements OnInit{
     return this.lastPart.get('question');
   }
 
+  get justGameGenres(){
+    return this.gameGenres.get('gameGenres');
+  }
+
   startTheSurvey(){
 
     this.startSurvey = true;
+  }
+
+  submitFormToDatabase() {
+    //console.log(this.surveyForm.value);
+    this.saveDataGame();
+  }
+
+  saveDataGame(){
+
+    const userLogin = this.supaBase.currentUser()?.email;
+
+    this.supaBase.supabaseFunctions.schema('public').from('survey').insert([
+      {user : userLogin, name: this.justName?.value, surname: this.justSurname?.value, age: this.justAge?.value,
+        phone: this.justPhoneNumber?.value, genres: JSON.stringify(this.surveyForm.get('gameGenres')?.value), 
+        minutesPlayed : this.justTimePlayed?.value, answer : this.justQuestions?.value
+       }]).then(({data, error}) =>{
+      if(error){
+        console.log("Error al escribir en la BD");
+        console.log(error.message);
+      }
+      else{
+        console.log("Success");
+      }
+    });
+    this.showSurveySaved();
+  }
+
+  showSurveySaved(){
+    const element = document.getElementById("survey-saved");
+    element?.classList.add('open-surveySaved');
+
+    const element2 = document.getElementById("form-last-part");
+    element2?.classList.remove('open-form')
+
+  }
+
+  removeSurveySaved(){
+    const element = document.getElementById("survey-saved");
+    element?.classList.remove('open-surveySaved');
   }
 
   changeForms(condition:string){
@@ -99,9 +143,4 @@ export class EncuestaComponent implements OnInit{
       element?.classList.remove('close-form');
     }
   }
-
-  enviarForm() {
-    console.log(this.surveyForm.value);
-  }
-
 }

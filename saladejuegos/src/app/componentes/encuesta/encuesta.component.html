@@ -13,11 +13,11 @@
                     ¡Gracias!</h3>
 
                 <button class="floatBtn btn-continue-success" id="button-next" type="button" style="border: 2px solid bisque; font-size: 40px; height: 100px; top: 77%;"
-                (click)="startTheSurvey()">Comenzar <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+                (click)="startTheSurvey()">Comenzar <i class="fa-solid fa-circle-play" style="font-size: 30px;"></i></button>
 
             }
             @else {
-                <form [formGroup]="surveyForm" (ngSubmit)="enviarForm()">
+                <form [formGroup]="surveyForm" (ngSubmit)="submitFormToDatabase()">
 
                     <div class="first-form" id="form-first-part">
                         
@@ -79,7 +79,7 @@
                               
                               <div class="checkbox-wrapper-39" style="position: fixed; top: 30%; left: 72%;">
                                 <label>
-                                  <input type="checkbox" id="souls" name="generos" value="souls" formControlName="soulslike"/>
+                                  <input type="checkbox" formControlName="soulslike"/>
                                   <h3 style="font-size: 25px;">Soulslike</h3>
                                   <span class="checkbox"></span>
                                 </label>
@@ -143,9 +143,9 @@
                             </ng-container>
         
                             <h3 style="font-size: 45px; text-align: center; text-shadow: 5px 5px 5px chocolate;">¿Cuál dirías que es la plataforma de juegos más icónica?</h3>
-        
+
                             <input style="left: 6%; width: 540px;" [ngClass]="{'error': justQuestions?.hasError('required')}" class="input-form" type="text" name=""
-                             id="question" formControlName="question" placeholder="Ingrese su apellido...">
+                             id="question" [ngModel]="questionLenght" formControlName="question" maxlength="50" placeholder="50 caracteres máximo...">
                             <ng-container *ngIf="justQuestions?.hasError('pattern')">
                                     <p style="position: relative; top: 14.5%; left: 22%; margin-top: -10px;">¡No se aceptan caracteres especiales!</p>
                             </ng-container>
@@ -155,12 +155,16 @@
                         <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 7%;" 
                         (click)="changeForms('LastToSecond')">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
                                             
-                        <button [ngClass]="{'btn-continue-fail': this.surveyForm.invalid, 'btn-continue-success': this.surveyForm.valid}" 
-                        class="floatBtn" [disabled]="this.surveyForm.invalid" type="submit" >Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i>
+                        <button style="left: 68%;" [ngClass]="{'btn-continue-fail': this.surveyForm.invalid, 'btn-continue-success': this.surveyForm.valid}" 
+                        class="floatBtn" [disabled]="this.surveyForm.invalid" type="submit">Guardar <i style="font-size: 30px;" class="fa-solid fa-floppy-disk"></i>
                         </button>
                     </div>
                 
                 </form>
+
+                <div class="surveySaved" id="survey-saved">
+                    <p style="font-size: 45px; color: bisque;">¡Encuensta enviada con éxito! <br>Gracias por participar</p>
+                </div>
             }
         }
         @else if(this.supaBase.currentUser() === null){
