@@ -27,61 +27,41 @@ export class SupabaseService {
     return from(promise);
   }
 
-  async getMessages() {
-    return await this.supabaseFunctions.schema('public')
-      .from('messages')
-      .select('*')
-      .order('inserted_at', { ascending: true });
-  }
+  // async getMessages() {
+  //   return await this.supabaseFunctions.schema('public')
+  //     .from('messages')
+  //     .select('*')
+  //     .order('inserted_at', { ascending: true });
+  // }
 
-  async getPointsFromGame(game:string){
-    let query = this.supabaseFunctions.schema('public')
-        .from('gamePoints')
-        .select('*')
-        .order('points' , {ascending : false})
+  // async sendMessage(text: string, user: string, hour:string) {
+  //   return await this.supabaseFunctions.schema('public').from('messages').insert([
+  //     {
+  //       context: text,
+  //       username: user,
+  //       inserted_at: hour
+  //     },
+  //   ]).then(({data, error}) =>{
+  //     if(error){
+  //       console.log(error.message);
+  //     }
+  //   });
+  // }
 
-      if(game){
-        query = query.eq('game', game);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('Error al obtener los puntajes:', error);
-        return [];
-      }
-    
-      return data;
-  }
-
-  async sendMessage(text: string, user: string, hour:string) {
-    return await this.supabaseFunctions.schema('public').from('messages').insert([
-      {
-        context: text,
-        username: user,
-        inserted_at: hour
-      },
-    ]).then(({data, error}) =>{
-      if(error){
-        console.log(error.message);
-      }
-    });
-  }
-
-  onNewMessage(callback: (payload: any) => void) {
-    return this.supabaseFunctions
-      .channel('messages_channel')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'messages',
-        },
-        (payload) => callback(payload.new)
-      )
-      .subscribe();
-  }
+  // onNewMessage(callback: (payload: any) => void) {
+  //   return this.supabaseFunctions
+  //     .channel('messages_channel')
+  //     .on(
+  //       'postgres_changes',
+  //       {
+  //         event: 'INSERT',
+  //         schema: 'public',
+  //         table: 'messages',
+  //       },
+  //       (payload) => callback(payload.new)
+  //     )
+  //     .subscribe();
+  // }
 
   constructor() { }
 }

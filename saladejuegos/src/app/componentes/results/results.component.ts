@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SupabaseService } from '../../services/supabase.service';
 import { LeaderboardsService } from '../../services/leaderboards.service';
 import { r3JitTypeSourceSpan } from '@angular/compiler';
@@ -11,23 +11,46 @@ import { CommonModule } from '@angular/common';
   styleUrl: './results.component.scss'
 })
 
-export class ResultsComponent {
+export class ResultsComponent implements OnInit {
 
   leaders:any[] = [];
   top3:any[] = [];
-  first:any;
-  second:any;
-  third:any;
+  first:any = '';
+  second:any = '';
+  third:any = '';
   game!:string;
+  showAllScoresFlag:boolean = true;
+  playersHangMan:any[] = [];
+  playersHigherLower:any[] = [];
+  playersTrivia:any[] = [];
+  playersShooter:any[] = [];
+  allPointsAllPlayer:any[] = [];
+  allGames:any[] = [];
+  flagHangMan:boolean = false;
+  flagHigherLower:boolean = false;
+  flagTrivia:boolean = false;
+  flagShooter:boolean = false;
 
   supaBase = inject(SupabaseService)
   supaBaseLeaders = inject(LeaderboardsService);
+
+  ngOnInit(): void {
+    this.getAllPointsAllGames();
+  }
 
   async getLeadersFromAGame(game:string){
 
     this.leaders = await this.supaBaseLeaders.getPointsFromGame(game);
     console.log(this.leaders);
     this.getTop3Player();
+  }
+
+  async getAllPointsAllGames(){
+
+    this.playersHangMan = await this.supaBaseLeaders.getPointsFromGame('Ahorcado');
+    this.playersHigherLower = await this.supaBaseLeaders.getPointsFromGame('Mayor o Menor');
+    this.playersTrivia = await this.supaBaseLeaders.getPointsFromGame('Preguntados');
+    this.playersShooter = await this.supaBaseLeaders.getPointsFromGame('Punteria');
   }
 
   getTop3Player(){
@@ -70,6 +93,21 @@ export class ResultsComponent {
     element2?.classList.remove('open-second-ribbon');
     element3?.classList.remove('open-third-ribbon');
     element4?.classList.remove('open-h1');
+  }
+
+  showAllScores(){
+
+    const scores = document.getElementById('all-scores-id');
+
+    if(this.showAllScoresFlag){
+      scores?.classList.add('open-all-scores');
+      this.showAllScoresFlag = false;
+      return;
+    }
+
+    scores?.classList.remove('open-all-scores');
+    this.showAllScoresFlag = true;
+
   }
 
 }

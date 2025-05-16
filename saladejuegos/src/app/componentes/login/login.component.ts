@@ -18,9 +18,18 @@ show:boolean = false;
 email:string = "";
 password:string = "";
 errorNumber:number = 0;
+date!:Date;
 
 ngOnInit(): void {
-  
+  this.date = new Date();
+
+  let dateAndTime = '';
+  let month = '';
+
+  dateAndTime += this.date.getDate() + '/';
+
+  console.log(this.date.getDate());
+  console.log(this.date.getMonth());
 }
 
 constructor(private router:Router){

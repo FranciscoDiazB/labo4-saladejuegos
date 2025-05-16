@@ -36,11 +36,20 @@
 
 @keyframes slideInFromRight {
     0% {
-      transform: translateX(1000%);
+      transform: translateX(100%);
     }
     100% {
       transform: translateX(0);
     }
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .backgroundHome{
@@ -62,7 +71,6 @@
 
 .Home{
     font-family: 'westernFont';
-    text-shadow: 5px 5px 5px black;
 	position: relative;
 	top: 26%;
 	left: 16%;
@@ -80,13 +88,12 @@
 }
 
 h1{
-    font-size: 120px;
+    font-size: 60px;
     position: relative;
-    left: 3.5%;
     color: bisque;
     text-shadow: 5px 5px 5px black;
     margin-bottom: 40px;
-    animation: 2s ease-out 0s 1 slideInFromTop;
+    animation: 2s ease-out 0s 1 slideInFromRight;
 }
 
 h4{
@@ -107,33 +114,36 @@ h3{
     animation: 2s ease-out 0s 1 slideInFromBelow;
 }
 
-.chatBtn{
+.floatBtn{
     background-color: transparent;
-    position: relative;
-    top: -2.5%;
-    left: 92%;
-    width: 120px;
-    height: 110px;
+    position: fixed;
+    top: 82%;
+    font-size: 30px;
+    left: 65%;
+    height: 70px;
     border-radius: 15%;
-    border: transparent;
+    padding: 15px;
     box-shadow: 5px 3px 15px black;
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+    color: bisque;
+    border: transparent;
+    transition: 1s;
 
     &:hover{
         background-color: brown;
     }
 }
 
-.chat{
-    font-family: 'westernFont';
-	position: relative;
-	top: 26%;
-	left: 16%;
-    border-radius: 25%;
-	width: 450px;
-	height: 600px;
-	background: black;
-	border: 2px solid bisque;
-	padding: 30px;
+.btn-continue-success{
+    border: 2px solid cadetblue;
+}
+
+.btn-continue-fail{
+    border: 2px solid crimson;
+
+    &:hover{
+        background: transparent;
+    }
 }
 
 @keyframes pulse {
@@ -164,5 +174,82 @@ h3{
 
 i{
     font-size: 100px;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    animation: 2s ease-in 0s 1 fadeInOpacity;
 }
+
+p{
+    font-size: 25px;
+    color: crimson;
+    animation: 0.8s ease-in 0s 1 slideInFromTop;
+}
+
+.input-form{
+    position: relative;
+    font-size: 40px;
+    width: 450px; 
+    background-color: transparent;
+    color: bisque;
+    left: 25%;
+    margin-bottom: 15px;
+    transition: 1s;
+    height: 60px;
+    border: 2px solid bisque;
+    animation: 2s ease-out 0s 1 slideInFromTop;
+    padding-inline: 10px;
+}
+
+.error{
+    border-right: 10px solid crimson;
+}
+
+.all-form {
+    font-family: 'westernFont';
+    position: fixed;
+    width: 660px;
+    height: 600px;
+    border-radius: 5%;
+    top: 7%;
+    left: 2.5%;
+    background: rgba(0, 0, 0, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+    border: 2px solid black;
+    padding: 25px;
+    animation: 3s ease-in 0s 1 fadeInOpacity;
+    transform: scale(1);
+    transition: 0.4s transform;
+}
+
+.all-form-two {
+    font-family: 'westernFont';
+    position: fixed;
+    width: 660px;
+    height: 600px;
+    border-radius: 5%;
+    top: 7%;
+    left: 2.5%;
+    background: rgba(0, 0, 0, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+    border: 2px solid black;
+    padding: 25px;
+    animation: 3s ease-in 0s 1 fadeInOpacity;
+    transform: scale(0.000000000001);
+    transition: 0.4s transform;
+}
+
+.open-form{
+    transform: scale(1);
+}
+
+.close-form{
+    transform: scale(0.000000000001);
+}
+
+
+
 

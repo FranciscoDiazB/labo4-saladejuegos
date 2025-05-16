@@ -1,10 +1,62 @@
 <div class="backgroundHome">
 
-    <div class="Home">
-
-        <h1>Encuesta</h1>
-        
+    <div class="Home">        
         @if (this.supaBase.currentUser()) {
+            
+            <form [formGroup]="surveyForm" (ngSubmit)="enviarForm()">
+
+                
+                <div class="all-form" id="form-first-part">
+                    
+                    <h1 style="text-align: center;">Usuario: {{this.supaBase.currentUser()?.email}}</h1>
+                
+                    <div>
+                        <input [ngClass]="{'error': justName?.hasError('required')}" style="margin-right: 20px;" class="input-form" type="text" name="" id="name" formControlName="name" placeholder="Ingrese su nombre...">
+                            <ng-container *ngIf="justName?.hasError('pattern')">
+                                <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
+                            </ng-container>
+
+                        <input [ngClass]="{'error': justSurname?.hasError('required')}" class="input-form" type="text" name="" id="name" formControlName="surname" placeholder="Ingrese su apellido...">
+                        <ng-container *ngIf="justSurname?.hasError('pattern')">
+                            <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
+                        </ng-container>
+                    </div>
+
+                    <input type="number" [ngClass]="{'error': justPhoneNumber?.hasError('required')}" class="input-form" formControlName="phoneNumber" placeholder="Ingrese número de teléfono...">
+                    <ng-container *ngIf="justPhoneNumber?.hasError('max')">
+                        <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico de hasta 10 caracteres máximo!</p>
+                    </ng-container>
+                    <ng-container *ngIf="justPhoneNumber?.hasError('min')">
+                        <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico no puede empezar con 0!</p>
+                    </ng-container>
+
+                    <i style="position: fixed; left: 7%; top: 29%;" class="fa-solid fa-user"></i>
+                    <input style="position: fixed; top: 50.45%;width: 130px; left: 4%;" type="number" [ngClass]="{'error': justAge?.hasError('required')}" class="input-form" formControlName="age" placeholder="Edad">
+                    <ng-container *ngIf="justAge?.hasError('max') || justAge?.hasError('min')">
+                        <p style="position: fixed; top: 61.8%; left: 3.8%;">¡Entre 18 y 99!</p>
+                    </ng-container>
+
+                    <button [ngClass]="{'btn-continue-fail': justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                        justPhoneNumber?.invalid , 'btn-continue-success': justName?.valid && justSurname?.valid && justAge?.valid && justPhoneNumber?.valid}" 
+                        [disabled]="justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                        justPhoneNumber?.invalid"
+                    class="floatBtn" id="button-next" type="button" (click)="changeButtonBorder(true)">Continuar <i style="font-size: 30px;" class="fa-solid fa-forward"></i></button>
+                </div>
+
+                <div class="all-form-two" id="form-second-part">
+                    <button [ngClass]="{'btn-continue-fail': justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                        justPhoneNumber?.invalid , 'btn-continue-success': justName?.valid && justSurname?.valid && justAge?.valid && justPhoneNumber?.valid}" 
+                        [disabled]="justName?.invalid || justSurname?.invalid || justAge?.invalid ||
+                        justPhoneNumber?.invalid"
+                    class="floatBtn" id="button-next" type="button" style="left: 7%;" (click)="changeButtonBorder(false)">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+                    
+                    
+                    <button [ngClass]="{'btn-continue-fail': this.surveyForm.invalid, 'btn-continue-success': this.surveyForm.valid}" 
+                    class="floatBtn" [disabled]="this.surveyForm.valid" type="submit" style="left: 50%;">Guardar Encuesta <i style="font-size: 30px;" class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+
 
         }
         @else if(this.supaBase.currentUser() === null){

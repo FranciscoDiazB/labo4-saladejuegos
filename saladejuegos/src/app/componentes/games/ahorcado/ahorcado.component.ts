@@ -39,17 +39,6 @@ export class AhorcadoComponent implements OnInit{
 
   supaBase = inject(SupabaseService);
 
-  restartGame(){
-    this.hideAllBodyParts();
-    this.modifyHeart(0);
-    this.closeMessage();
-    this.resetFlags();
-    this.resetValues();
-    this.enabledKeyboard();
-    this.removeGameSaved();
-    this.pickRandomWord();
-  }
-
   pickRandomWord(){
     console.log('Array: ' + this.guessingWords.length);
     
@@ -133,9 +122,6 @@ export class AhorcadoComponent implements OnInit{
 
     this.didItWin();
     this.didItLose();
-
-    console.log("Exitos: " + this.countRightLetters)
-    console.log("Errores:" + this.countWrongAnswers)
   }
 
   enableButton(char:string){
@@ -168,6 +154,41 @@ export class AhorcadoComponent implements OnInit{
     this.showGameSaved();
   }
 
+  getLetters():string[]{
+    return this.randomWord.split('');
+  }
+
+  didItLose(){
+    if(this.countWrongAnswers == 8){
+      this.gameLost = true;
+      this.showMessage();
+    }
+  }
+
+  didItWin(){
+    if(this.randomWord.length == this.countRightLetters){
+      this.points += 45;
+      this.wordGuessedRight = true;
+      this.gameWon = true;
+      this.showMessage();
+    }
+  }
+
+  resetValues(){
+    this.countRightLetters = 0;
+    this.countWrongAnswers = 0;
+    this.substractPoints = 0;
+    this.points = 0;
+    this.letterGuessedRight = [];
+  }
+
+  resetFlags(){
+    this.wrongLetter = false;
+    this.gameLost = false;
+    this.gameWon = false;
+    this.wordGuessedRight = false;
+  }
+
   modifyHeart(frequency:number){
     
     const element = document.getElementById('heart');
@@ -195,10 +216,6 @@ export class AhorcadoComponent implements OnInit{
       element?.classList.remove('shake-medium');
       element?.classList.remove('shake-high');
     }
-  }
-
-  getLetters():string[]{
-    return this.randomWord.split('');
   }
 
   showHideBodyPart(bodyPart:string, cond:boolean){
@@ -237,37 +254,6 @@ export class AhorcadoComponent implements OnInit{
     element?.classList.remove('open-msg');
   }
 
-  didItLose(){
-    if(this.countWrongAnswers == 8){
-      this.gameLost = true;
-      this.showMessage();
-    }
-  }
-
-  didItWin(){
-    if(this.randomWord.length == this.countRightLetters){
-      this.points += 45;
-      this.wordGuessedRight = true;
-      this.gameWon = true;
-      this.showMessage();
-    }
-  }
-
-  resetValues(){
-    this.countRightLetters = 0;
-    this.countWrongAnswers = 0;
-    this.substractPoints = 0;
-    this.points = 0;
-    this.letterGuessedRight = [];
-  }
-
-  resetFlags(){
-    this.wrongLetter = false;
-    this.gameLost = false;
-    this.gameWon = false;
-    this.wordGuessedRight = false;
-  }
-
   showGameSaved(){
     const element = document.getElementById("game-saved");
     element?.classList.add('open-gameSaved');
@@ -276,6 +262,17 @@ export class AhorcadoComponent implements OnInit{
   removeGameSaved(){
     const element = document.getElementById("game-saved");
     element?.classList.remove('open-gameSaved');
+  }
+
+  restartGame(){
+    this.hideAllBodyParts();
+    this.modifyHeart(0);
+    this.closeMessage();
+    this.resetFlags();
+    this.resetValues();
+    this.enabledKeyboard();
+    this.removeGameSaved();
+    this.pickRandomWord();
   }
 
 }

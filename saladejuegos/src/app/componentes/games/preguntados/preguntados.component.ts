@@ -114,7 +114,6 @@ export class PreguntadosComponent {
     else{
       this.notEnoughCharacters = true;
     }
-
   }
 
   selectAnswer(option: string){
@@ -130,6 +129,29 @@ export class PreguntadosComponent {
       this.shakeQuestion();
     }
     this.showMessage();
+  }
+
+  next(){
+    this.closeMessage();
+    this.newRound();
+  }
+
+  saveDataGame(){
+
+    const userLogin = this.supaBase.currentUser()?.email;
+
+    this.supaBase.supabaseFunctions.schema('public').from('gamePoints').insert([{user : userLogin, game: 'Preguntados', points: this.points}]).then(({data, error}) =>{
+      if(error){
+        console.log("Error al escribir en la BD");
+        console.log(this.points)
+        console.log(userLogin);
+        console.log(error.message);
+      }
+      else{
+      }
+    });
+    console.log(this.points)
+    this.showGameSaved();
   }
 
   shakeQuestion(){
@@ -170,9 +192,14 @@ export class PreguntadosComponent {
     element?.classList.remove('open-msg');
   }
 
-  next(){
-    this.closeMessage();
-    this.newRound();
+  showGameSaved(){
+    const element = document.getElementById("game-saved");
+    element?.classList.add('open-gameSaved');
+  }
+
+  removeGameSaved(){
+    const element = document.getElementById("game-saved");
+    element?.classList.remove('open-gameSaved');
   }
 
   restartGame(){
@@ -183,33 +210,5 @@ export class PreguntadosComponent {
     this.getDataAndStartRound();
     this.closeMessage();
     this.removeGameSaved();
-  }
-
-  saveDataGame(){
-
-    const userLogin = this.supaBase.currentUser()?.email;
-
-    this.supaBase.supabaseFunctions.schema('public').from('gamePoints').insert([{user : userLogin, game: 'Preguntados', points: this.points}]).then(({data, error}) =>{
-      if(error){
-        console.log("Error al escribir en la BD");
-        console.log(this.points)
-        console.log(userLogin);
-        console.log(error.message);
-      }
-      else{
-      }
-    });
-    console.log(this.points)
-    this.showGameSaved();
-  }
-
-  showGameSaved(){
-    const element = document.getElementById("game-saved");
-    element?.classList.add('open-gameSaved');
-  }
-
-  removeGameSaved(){
-    const element = document.getElementById("game-saved");
-    element?.classList.remove('open-gameSaved');
   }
 }

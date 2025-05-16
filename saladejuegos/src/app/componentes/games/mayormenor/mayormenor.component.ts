@@ -22,17 +22,11 @@ export class MayormenorComponent implements OnInit {
   lives:number = 5;
   lowerScore:number = 0;
 
+  constructor(){}
+
   ngOnInit(): void {
 
     this.startGame();
-  }
-
-  restartGame(){
-    this.lives = 5;
-    this.lowerScore = 0;
-    this.startGame();
-    this.closeMessage();
-    this.removeGameSaved();
   }
 
   startGame() {
@@ -50,34 +44,6 @@ export class MayormenorComponent implements OnInit {
     this.deck.getCard(this.deckId).subscribe((data: any) => {
       this.currentCard = data.cards[0];
     });
-  }
-
-  shakeHearts(){
-    
-    const element = document.getElementById('heart');
-
-    switch(this.lives){
-
-      case 1: 
-        element?.classList.add('one-left');
-        break;
-      case 2:
-        element?.classList.add('two-left');
-        break;
-      case 3:
-        element?.classList.add('three-left');
-        break;
-      case 4:
-        element?.classList.add('four-left'); 
-        break;
-      case 0:
-        element?.classList.remove('one-left');
-        element?.classList.remove('two-left');
-        element?.classList.remove('three-left');
-        element?.classList.remove('four-left');
-        break;
-
-    }
   }
 
   guess(higher: boolean) {
@@ -123,16 +89,6 @@ export class MayormenorComponent implements OnInit {
     }
   }
 
-  showMessage(){
-    const element = document.getElementById("msg");
-    element?.classList.add('open-msg');
-  }
-
-  closeMessage(){
-    const element = document.getElementById("msg");
-    element?.classList.remove('open-msg');
-  }
-
   getCardValue(value: string): number {
     const cardMap: any = {
       'ACE': 14,
@@ -161,6 +117,44 @@ export class MayormenorComponent implements OnInit {
     this.showGameSaved();
   }
 
+  shakeHearts(){
+    
+    const element = document.getElementById('heart');
+
+    switch(this.lives){
+
+      case 1: 
+        element?.classList.add('one-left');
+        break;
+      case 2:
+        element?.classList.add('two-left');
+        break;
+      case 3:
+        element?.classList.add('three-left');
+        break;
+      case 4:
+        element?.classList.add('four-left'); 
+        break;
+      case 0:
+        element?.classList.remove('one-left');
+        element?.classList.remove('two-left');
+        element?.classList.remove('three-left');
+        element?.classList.remove('four-left');
+        break;
+
+    }
+  }
+
+  showMessage(){
+    const element = document.getElementById("msg");
+    element?.classList.add('open-msg');
+  }
+
+  closeMessage(){
+    const element = document.getElementById("msg");
+    element?.classList.remove('open-msg');
+  }
+
   showGameSaved(){
     const element = document.getElementById("game-saved");
     element?.classList.add('open-gameSaved');
@@ -171,7 +165,11 @@ export class MayormenorComponent implements OnInit {
     element?.classList.remove('open-gameSaved');
   }
 
-  constructor(){
-
+  restartGame(){
+    this.lives = 5;
+    this.lowerScore = 0;
+    this.startGame();
+    this.closeMessage();
+    this.removeGameSaved();
   }
 }

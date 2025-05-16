@@ -11,36 +11,90 @@
                 <button (click)="getLeadersFromAGame('Preguntados')" style="margin-bottom: 10px;" class="triviaImage pulse"></button> <h3 style="top: 64%;">Preguntados</h3><br>
                 <button (click)="getLeadersFromAGame('Punteria')" style="margin-bottom: 10px;" class="shooterImage pulse"></button> <h3 style="top: 80%;">Punteria</h3>
 
-                <div style="right: 37.7%; top: 39.7%;" class="ribbon" id="firstPlace">
-                    <i [ngClass]="{'pulse-user': first.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold;" class="fa-solid fa-trophy"></i>
-                    <p [ngClass]="{'red': first.user == this.supaBase.currentUser()?.email}" [ngClass]="" style="margin-bottom: -10px; margin-top: -5px;">{{first.user.split('@',1)[0]}}</p>
-                    <p style="margin-bottom: -5px;">{{first.points}} Puntos</p>
+                @if(first.user || second.user || third.user){
 
-                </div>
-
-                <div class="game-h1" id="game-h1-id">
-                    <h1 style="font-size: 60px;">{{first.game}}</h1>
-                </div>
-
-                <div class="ribbon" id="secondPlace">
-                    <i [ngClass]="{'pulse-user': second.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy"></i>
-                    <p [ngClass]="{'red': second.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{second.user.split('@',1)[0]}}</p>
-                    <p style="margin-bottom: -5px;">{{second.points}} Puntos</p>
-
-                </div>
-
-                <div style="right: 24.4%; top: 54.7%;" class="ribbon" id="thirdPlace">
-                    <i [ngClass]="{'pulse-user': third.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy"></i>
-                    <p [ngClass]="{'red': third.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{third.user.split('@',1)[0]}}</p>
-                    <p style="margin-bottom: -5px;">{{third.points}} Puntos</p>
-
-                </div>
+                    <div style="right: 37.7%; top: 39.7%;" class="ribbon" id="firstPlace">
+                        <i [ngClass]="{'pulse-user': first.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold;" class="fa-solid fa-trophy"></i>
+                        <p [ngClass]="{'red': first.user == this.supaBase.currentUser()?.email}" [ngClass]="" style="margin-bottom: -10px; margin-top: -5px;">{{first.user.split('@',1)[0]}}</p>
+                        <p style="margin-bottom: -5px;">{{first.points}} Puntos</p>
+    
+                    </div>
+    
+                    <div class="game-h1" id="game-h1-id">
+                        <h1 style="font-size: 60px;">{{first.game}}</h1>
+                    </div>
+    
+                    <div class="ribbon" id="secondPlace">
+                        <i [ngClass]="{'pulse-user': second.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy"></i>
+                        <p [ngClass]="{'red': second.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{second.user.split('@',1)[0]}}</p>
+                        <p style="margin-bottom: -5px;">{{second.points}} Puntos</p>
+    
+                    </div>
+    
+                    <div style="right: 24.4%; top: 54.7%;" class="ribbon" id="thirdPlace">
+                        <i [ngClass]="{'pulse-user': third.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy"></i>
+                        <p [ngClass]="{'red': third.user == this.supaBase.currentUser()?.email}" style="margin-bottom: -10px; margin-top: -5px;">{{third.user.split('@',1)[0]}}</p>
+                        <p style="margin-bottom: -5px;">{{third.points}} Puntos</p>
+    
+                    </div>
+                }
 
                 <div class="leaderboards">
                     <div class="podium"></div>
                 </div>
 
-                <button class="floatBtn"><i class="fa-solid fa-chart-simple" style="font-size: 80px;"></i></button>
+                <button class="floatBtn" (click)="showAllScores()"><i class="fa-solid fa-chart-simple" style="font-size: 80px;"></i></button>
+
+                <div class="all-scores" id="all-scores-id">
+
+                    @for (item of this.playersHangMan; track $index) {
+                        
+                        <h4 *ngIf="$index == 0" style="font-size: 60px; margin-bottom: 35px; margin-top: 35px;">Ahorcado</h4>
+                        <p [ngClass]="{'red': item.user == this.supaBase.currentUser()?.email, 'p-bisque': item.user != this.supaBase.currentUser()?.email}" style="font-size: 25px;"> 
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold; position: relative;" class="fa-solid fa-trophy" *ngIf="$index == 0"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy" *ngIf="$index == 1"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy" *ngIf="$index == 2"></i>
+                            Jugador: {{item.user.split('@',1)[0]}} - Puntaje: {{item.points}} puntos
+                        </p>
+                    }
+
+                    
+                    @for (item of this.playersHigherLower; track $index) {
+                            
+                        <h4 *ngIf="$index == 0" style="font-size: 60px; margin-bottom: 35px; margin-top: 35px;">Mayor o Menor</h4>
+                        <p [ngClass]="{'red': item.user == this.supaBase.currentUser()?.email, 'p-bisque': item.user != this.supaBase.currentUser()?.email}" style="font-size: 25px;"> 
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold; position: relative;" class="fa-solid fa-trophy" *ngIf="$index == 0"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy" *ngIf="$index == 1"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy" *ngIf="$index == 2"></i>
+                            Jugador: {{item.user.split('@',1)[0]}} - Puntaje: {{item.points}} puntos
+                        </p>
+                    }
+
+                    
+                    @for (item of this.playersTrivia; track $index) {
+                        
+                        <h4 *ngIf="$index == 0" style="font-size: 60px; margin-bottom: 35px; margin-top: 35px;">Preguntados</h4>
+                        <p [ngClass]="{'red': item.user == this.supaBase.currentUser()?.email, 'p-bisque': item.user != this.supaBase.currentUser()?.email}" style="font-size: 25px;"> 
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold; position: relative;" class="fa-solid fa-trophy" *ngIf="$index == 0"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy" *ngIf="$index == 1"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy" *ngIf="$index == 2"></i>
+                            Jugador: {{item.user.split('@',1)[0]}} - Puntaje: {{item.points}} puntos
+                        </p>
+                    }
+                    
+                    @for (item of this.playersShooter; track $index) {
+                        
+                        <h4 *ngIf="$index == 0" style="font-size: 60px; margin-bottom: 35px; margin-top: 35px;">Punteria</h4>
+                        <p [ngClass]="{'red': item.user == this.supaBase.currentUser()?.email, 'p-bisque': item.user != this.supaBase.currentUser()?.email}" style="font-size: 25px;"> 
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: gold; position: relative;" class="fa-solid fa-trophy" *ngIf="$index == 0"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: silver;" class="fa-solid fa-trophy" *ngIf="$index == 1"></i>
+                            <i [ngClass]="{'pulse-user': item.user == this.supaBase.currentUser()?.email}" style="font-size: 25px; color: burlywood;" class="fa-solid fa-trophy" *ngIf="$index == 2"></i>
+                            Jugador: {{item.user.split('@',1)[0]}} - Puntaje: {{item.points}} puntos
+                        </p>
+                    }
+                    <br>
+                    
+                </div>
 
         }
         @else if(this.supaBase.currentUser() === null){

@@ -28,6 +28,27 @@ export class ShooterComponent implements OnDestroy {
     clearInterval(this.interval)
   }
 
+  startGame() {
+    this.flagStartGame = true;
+    this.points = 0;
+    this.flagGameOver = false;
+    this.spawnTarget();
+
+    this.interval = setInterval(() => {
+      
+      this.timer--;
+
+      console.log(this.timer);
+
+      if (this.timer <= 0) {
+        this.flagGameOver = true;
+        this.targets.length = 0;
+        this.showMessage();
+        clearInterval(this.interval); 
+      }
+    }, 1000);
+  }
+
   spawnTarget() {
     
     if (this.flagGameOver){
@@ -47,24 +68,29 @@ export class ShooterComponent implements OnDestroy {
     setTimeout(() => this.spawnTarget(), 100);
   }
 
-  startGame() {
-    this.flagStartGame = true;
-    this.points = 0;
-    this.flagGameOver = false;
-    this.spawnTarget();
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent) {
+    const clickedX = event.clientX;
+    const clickedY = event.clientY;
+    console.log(clickedX);
+    console.log(clickedY);
 
-    this.interval = setInterval(() => {
-      
-      this.timer--;
-
-      if (this.timer <= 0) {
-        this.flagGameOver = true;
-        this.targets.length = 0;
-        this.showMessage();
-        clearInterval(this.interval); 
+    this.targets.forEach((target, index) => {
+      if (this.isHit(clickedX, clickedY, target)) {
+        this.targets.splice(index, 1); 
+        this.points += 10;              
       }
-    }, 1000);
+    });
+  }
 
+  isHit(x: number, y: number, target: { x: number, y: number }): boolean {
+    const targetSize = 50; 
+    return (
+      x >= target.x &&
+      x <= target.x + targetSize &&
+      y >= target.y &&
+      y <= target.y + targetSize
+    );
   }
 
   saveDataGame(){
@@ -84,32 +110,7 @@ export class ShooterComponent implements OnDestroy {
     console.log(this.points)
     this.showGameSaved();
   }
-
-  showGameSaved(){
-    const element = document.getElementById("game-saved");
-    element?.classList.add('open-gameSaved');
-    this.removeMessage();
-  }
-
-  restartGame(){
-    window.location.reload();
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent) {
-    const clickedX = event.clientX;
-    const clickedY = event.clientY;
-    console.log(clickedX);
-    console.log(clickedY);
-
-    this.targets.forEach((target, index) => {
-      if (this.isHit(clickedX, clickedY, target)) {
-        this.targets.splice(index, 1); 
-        this.points += 10;              
-      }
-    });
-  }
-
+  
   showMessage(){
     const element = document.getElementById("msg");
     element?.classList.add('open-msg');
@@ -120,13 +121,13 @@ export class ShooterComponent implements OnDestroy {
     element?.classList.add('close-msg');
   }
 
-  isHit(x: number, y: number, target: { x: number, y: number }): boolean {
-    const targetSize = 50; 
-    return (
-      x >= target.x &&
-      x <= target.x + targetSize &&
-      y >= target.y &&
-      y <= target.y + targetSize
-    );
+  showGameSaved(){
+    const element = document.getElementById("game-saved");
+    element?.classList.add('open-gameSaved');
+    this.removeMessage();
+  }
+
+  restartGame(){
+    window.location.reload();
   }
 }

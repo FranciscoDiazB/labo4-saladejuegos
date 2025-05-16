@@ -91,10 +91,8 @@ h1{
 h4{
     font-size: 43px;
     position: relative;
-    color: bisque;
-    text-shadow: 5px 5px 5px chocolate;
-    margin-right: 45px;
-    animation: 2s ease-out 0s 1 slideInFromRight;
+    color: crimson;
+    border: 2px solid bisque;
 }
 
 h3{
@@ -230,7 +228,7 @@ i{
     position: fixed;
     right: 49.9%;
     top: 51%;
-    z-index: 1000;
+    z-index: 2;
     min-width: none;
     max-width: 210px;
     border-radius: 15%;
@@ -254,10 +252,9 @@ i{
     font-size: 60px; 
     top: 77%; 
     left: 46%; 
-    z-index: 3000;
     transform: scale(0.00001);
     transition: transform 0.4s;
-    
+    z-index: 3;
 }
 
 .open-h1{
@@ -284,7 +281,7 @@ i{
 }
 
 .red{
-    color: brown;
+    color: cadetblue;
 }
 
 .pulse-user{
@@ -313,4 +310,39 @@ i{
     &:hover{
         background-color: brown;
     }
+}
+
+.all-scores{
+    font-family: 'westernFont';
+    position: fixed;
+    width: 700px;
+    height: 450px;
+    border-radius: 5%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    left:38%;
+    top: 30%;
+    background: rgba(0, 0, 0, 0.603);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+    border: 2px solid black;
+    padding: 15px;
+    transform: scale(0.0000001);
+    transition: transform 0.4s, top 0.4s;
+    z-index: 3;
+  }
+
+  .open-all-scores{
+    transform: scale(1);
+    top: 30%;
+  }
+
+  .all-scores::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+}
+
+.p-bisque{
+    color: bisque;
 }

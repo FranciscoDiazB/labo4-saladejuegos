@@ -2,6 +2,8 @@ import { AfterViewChecked, Component, ElementRef, inject, OnDestroy, OnInit, Vie
 import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RealtimeChannel } from '@supabase/supabase-js';
+import { RealtimechatService } from '../../services/realtimechat.service';
 
 @Component({
   selector: 'app-chat',
@@ -18,14 +20,15 @@ export class ChatComponent implements OnInit, OnDestroy{
   time!:Date;
   exactTime:string = '';
 
-  @ViewChild('chatBox') private chatBox!: ElementRef;
+  @ViewChild('chatBox') chatBox!: ElementRef;
 
   supabase = inject(SupabaseService);
+  supabaseChat = inject(RealtimechatService);
 
   constructor() {}
 
   async ngOnInit() {
-    const { data, error } = await this.supabase.getMessages();
+    const { data, error } = await this.supabaseChat.getMessages();
     if (error) {
       console.error('Error loading messages', error);
     } else {
@@ -33,13 +36,13 @@ export class ChatComponent implements OnInit, OnDestroy{
       setTimeout(() => this.scrollToBottom(), 0);
     }
 
-    this.subscription = this.supabase.onNewMessage((msg) => {
+    this.subscription = this.supabaseChat.onNewMessage((msg) => {
       this.messages.push(msg);
       setTimeout(() => this.scrollToBottom(), 100);
     });
   }
 
-  private scrollToBottom() {
+  scrollToBottom() {
     if (this.chatBox) {
       this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
     }
@@ -65,7 +68,7 @@ export class ChatComponent implements OnInit, OnDestroy{
     }
  
     if (this.newMessage.trim()) {
-      await this.supabase.sendMessage(this.newMessage, user.email, this.exactTime);
+      await this.supabaseChat.sendMessage(this.newMessage, user.email, this.exactTime);
       this.newMessage = '';
     }
   }

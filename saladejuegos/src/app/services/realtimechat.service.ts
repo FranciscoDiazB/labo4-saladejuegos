@@ -10,32 +10,39 @@ export class RealtimechatService {
 
   constructor() { }
 
-  async sendMessage(chat: string, username: string) {
-    return this.supaBaseChat.supabaseFunctions.schema('public').from('chatMessages').insert([{user: username, message: chat}]);
+  async getMessages() {
+    return await this.supaBaseChat.supabaseFunctions.schema('public')
+      .from('messages')
+      .select('*')
+      .order('id', { ascending: true });
   }
 
-  async getMessages() {
-    return this.supaBaseChat.supabaseFunctions.schema('public')
-      .from('chatMessages')
-      .select('*')
-      .order('inserted_at', { ascending: true });
+  async sendMessage(text: string, user: string, hour:string) {
+    return await this.supaBaseChat.supabaseFunctions.schema('public').from('messages').insert([
+      {
+        context: text,
+        username: user,
+        inserted_at: hour
+      },
+    ]).then(({data, error}) =>{
+      if(error){
+        console.log(error.message);
+      }
+    });
   }
 
   onNewMessage(callback: (payload: any) => void) {
     return this.supaBaseChat.supabaseFunctions
-      .channel('public:chatMessages')
+      .channel('messages_channel')
       .on(
         'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'chatMessages' },
-        (payload) => {
-          callback(payload.new);
-        }
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'messages',
+        },
+        (payload) => callback(payload.new)
       )
       .subscribe();
   }
-
-  getUserName(){
-    return this.supaBaseChat.currentUser()?.email
-  }
-
 }

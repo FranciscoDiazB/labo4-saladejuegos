@@ -29,4 +29,20 @@ export class LeaderboardsService {
     
       return data;
   }
+
+  async getAllPoints(){
+    let query = this.supaBaseLeader.supabaseFunctions.schema('public')
+        .from('gamePoints')
+        .select('*')
+        .order('game', {ascending : true});
+
+      const { data, error } = await query;
+
+      if (error) {
+        console.error('Error al obtener los juegos:', error);
+        return [];
+      }
+    
+      return data;
+  }
 }
