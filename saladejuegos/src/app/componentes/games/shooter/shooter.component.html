@@ -33,9 +33,13 @@
     
                     <h2 class="h3-points fadeIn" style="top:7%; right: 20%; border: 2px solid bisque; padding: 20px;">
                         ¡Tiempo Finalizado!</h2>
+
+                    <h3 *ngIf="!gameSaved" class="h3-points fade-in" style="left: 1%; top: 45%; position: fixed; line-height: 50px;">Guardar</h3>
+                    <h3 *ngIf="!gameSaved" class="h3-points fade-in" style="left: 1%; top: 52%; position: fixed; line-height: 50px;">Partida</h3>
+                    <i *ngIf="!gameSaved" style="left: 5%; top: 65%; position: fixed;" class="fa-solid fa-down-long fade-in"></i>
                     
                     <button class="floatBtn" style="top: 5%;" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
-                    <button class="floatBtn" style="top: 78%; left: 2%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+                    <button *ngIf="!gameSaved" class="floatBtn" style="top: 78%; left: 2%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
     
                     <div class="message" id="msg">
                     

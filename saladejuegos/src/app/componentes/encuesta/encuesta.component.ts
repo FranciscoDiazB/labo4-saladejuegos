@@ -18,7 +18,7 @@ export class EncuestaComponent implements OnInit{
   gameGenres!:FormGroup;
   lastPart!:FormGroup;
   startSurvey:boolean = false;
-  questionLenght:string = '';
+  questionLength:string = '';
 
   ngOnInit(): void {
 
@@ -28,7 +28,7 @@ export class EncuestaComponent implements OnInit{
       age: new FormControl(null, [Validators.min(18), Validators.max(99) ,Validators.required]),
       phoneNumber: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(9999999999)]),
     });
-
+  
     this.gameGenres = new FormGroup({
       shooter: new FormControl(false),
       sport: new FormControl(false),
@@ -72,7 +72,7 @@ export class EncuestaComponent implements OnInit{
   }
 
   get justGameGenres(){
-    return this.gameGenres.get('gameGenres');
+    return this.surveyForm.get('gameGenres');
   }
 
   startTheSurvey(){
@@ -91,7 +91,7 @@ export class EncuestaComponent implements OnInit{
 
     this.supaBase.supabaseFunctions.schema('public').from('survey').insert([
       {user : userLogin, name: this.justName?.value, surname: this.justSurname?.value, age: this.justAge?.value,
-        phone: this.justPhoneNumber?.value, genres: JSON.stringify(this.surveyForm.get('gameGenres')?.value), 
+        phone: this.justPhoneNumber?.value, genres: JSON.stringify(this.justGameGenres?.value), 
         minutesPlayed : this.justTimePlayed?.value, answer : this.justQuestions?.value
        }]).then(({data, error}) =>{
       if(error){

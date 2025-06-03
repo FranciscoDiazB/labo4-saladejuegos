@@ -16,6 +16,8 @@
             @else if(countWrongAnswers == 8){
                 <i class="fa-solid fa-heart-crack" style="position: fixed;font-size: 60px; top: 24%; left: 69%; z-index: 2000;" id="cracked-heart"></i>
             }
+
+            <button class="btn-Play" *ngIf="!buttonPlay" (click)="play()">Jugar</button>
             
             <div class="hangManNoose">
                     <div class="head" id="head"></div>
@@ -35,21 +37,21 @@
     
                 <div [ngSwitch]="item.idx">
     
-                    <h1 class="letterGuessedRight" *ngSwitchCase="0" style="right: 46.4%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="1" style="right: 42.9%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="2" style="right: 39.2%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="3" style="right: 34.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="4" style="right: 30.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="5" style="right: 26.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="6" style="right: 22.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="7" style="right: 18.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="8" style="right: 14.7%;">{{item.letra}}</h1>
-                    <h1 class="letterGuessedRight" *ngSwitchCase="9" style="right: 10.7%;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="0" style="right: 800px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="1" style="right: 740px">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="2" style="right: 680px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="3" style="right: 620px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="4" style="right: 560px">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="5" style="right: 500px">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="6" style="right: 440px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="7" style="right: 380px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="8" style="right: 320px;">{{item.letra}}</h1>
+                    <h1 class="letterGuessedRight" *ngSwitchCase="9" style="right: 260px;">{{item.letra}}</h1>
     
                 </div>
             }
 
-            <div class="letterSpace" style="right: 46%;" *ngIf="this.randomWord.length >= 1"></div>
+            <!-- <div class="letterSpace" style="right: 46%;" *ngIf="this.randomWord.length >= 1"></div>
             <div class="letterSpace fade-in" style="right: 42%;" *ngIf="this.randomWord.length >= 2"></div>
             <div class="letterSpace" style="right: 38%;" *ngIf="this.randomWord.length >= 3"></div>
             <div class="letterSpace fade-in" style="right: 34%;" *ngIf="this.randomWord.length >= 4"></div>
@@ -58,9 +60,10 @@
             <div class="letterSpace" style="right: 22%;" *ngIf="this.randomWord.length >= 7"></div>
             <div class="letterSpace fade-in" style="right: 18%;" *ngIf="this.randomWord.length >= 8"></div>
             <div class="letterSpace" style="right: 14%;" *ngIf="this.randomWord.length >= 9"></div>
-            <div class="letterSpace fade-in" style="right: 10%;" *ngIf="this.randomWord.length >= 10"></div>
+            <div class="letterSpace fade-in" style="right: 10%;" *ngIf="this.randomWord.length >= 10"></div> -->
+
     
-            <div class="keyboard">
+            <div *ngIf="buttonPlay" class="keyboard">
                 <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('Q')" id="q">Q</button>
                 <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('W')" id="w">W</button>
                 <button class="letterBtn" onclick="this.disabled = true" (click)="this.guessLetter('E')" id="e">E</button>
@@ -118,14 +121,23 @@
             </div>
     
             @if(gameLost || gameWon) {
-                        
+                
                 <button class="floatBtn" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
-                <button class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+                <button *ngIf="!gameSaved" class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+                <h3 *ngIf="!gameSaved" class="fade-in" style="left: 86%; top: 45%; position: fixed; line-height: 50px;">Guardar Partida</h3>
+                <i *ngIf="!gameSaved" class="fade-in" style="left: 92.5%; top: 65%; position: fixed;" class="fa-solid fa-down-long"></i>
             }
 
             <div class="gameSaved" id="game-saved">
                 <p style="font-size: 45px;">¡Partida guardada con éxito!</p>
             </div>
+
+            <div style="width: 700px; height: 50px; display: flex; position: fixed; top: 88%; left: 48%;">
+                @for (item of this.randomWord; track $index) {
+                    <i style="margin-right: 15px;" class="letterSpace"></i>
+                }
+            </div>
+
         }
     </div>
 

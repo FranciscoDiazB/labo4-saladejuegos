@@ -1,6 +1,17 @@
 <div class="nav">
  
-    <button type="button" class="btn btn-default" routerLink="home" >Home</button>
+
+    <div class="dropdown">
+        <button type="button" class="btn-Home btn-default" routerLink="home" >Home</button>
+        <div class="dropdown-content">
+            <button type="button" class="btn-Home btn-default" style="margin-bottom: 5px; margin-top: 5px;" (click)="redirctoTo('mayormenor')">Mayor o Menor</button>
+            <button type="button" class="btn-Home btn-default" style="margin-bottom: 5px;" (click)="redirctoTo('ahorcado')" >Ahorcado</button>
+            <button type="button" class="btn-Home btn-default" style="margin-bottom: 5px;" (click)="redirctoTo('preguntados')" >Preguntados</button>
+            <button type="button" class="btn-Home btn-default" style="margin-bottom: 5px;" (click)="redirctoTo('shooter')" >Punteria</button>
+        </div>
+    </div>
+
+
     <button type="button" class="btn btn-default" routerLink="quiensoy">Quien Soy</button>
 
     @if(supaBase.currentUser() ===  null){

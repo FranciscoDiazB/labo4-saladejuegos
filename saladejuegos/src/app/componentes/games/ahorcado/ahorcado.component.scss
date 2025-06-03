@@ -167,13 +167,13 @@
 }
 
 .letterSpace{
-    display: block;
+    display: flex;
     width: 45px;
     height: 15px;
     border: 1px solid bisque;
     background-color: rgba(184, 20, 20, 0.603);
-    position: fixed;
-    top: 85%;
+    position: relative;
+    top: -20%;
     animation: 3s ease-out 0s 1 slideInFromRight;
 }
 
@@ -193,7 +193,7 @@ i{
     position: relative;
     font-size: 40px;
     color: bisque;
-    animation: 1s ease-in-out 0s 1 fadeInOpacity;
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
     text-shadow: 5px 5px 5px black;
 }
 
@@ -397,6 +397,10 @@ h3{
     transition: transform 0.4s, top 0.4s;
 }
 
+.fade-in{
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+}
+
 .open-gameSaved{
     visibility: visible;
     top: 45%;
@@ -444,3 +448,28 @@ p{
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: infinite; 
 }  
+
+.btn-Play{
+    background-color: rgba(190, 12, 12, 0.685);
+    font-size: 50px;
+    left: 80.5%;
+    height: 70px;
+    width: 250px;
+    border: 1px solid bisque;
+    margin-left: 150px;
+    transition: 1s;
+    color: bisque;
+    border-radius: 5px;
+
+    &:hover{
+        background-color: black;
+        border-color: bisque;
+        color: #E73332;
+    }
+
+    &:focus{
+        background-color: black;
+        border-color: #E73332;
+        color: bisque;
+    }
+}

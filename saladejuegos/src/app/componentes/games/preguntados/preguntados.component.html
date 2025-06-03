@@ -11,7 +11,7 @@
        @else {
         <h3 class="h3-points" id="question" style="top: 25%; left: 7%;">¿Qué personaje es?</h3>
 
-        <div class="imgHolder">
+        <div class="imgHolder" id="image-holder">
             <img [src]="currentCharacter.imageUrl" [alt]="currentCharacter.fullName" class="character-image" />
         </div>
 
@@ -40,24 +40,26 @@
     
             </div>
 
-            @if (selectedAnswer != null) {
+            @if (selectedAnswer != null && !notEnoughCharacters) {
 
                 <button class="floatBtn" (click)="next()"><i style="font-size: 80px;" class="fa-solid fa-forward"></i></button>
-            }
-            
+            }     
         }
-        @else {
+
+        @if(lives == 0 || notEnoughCharacters) {
             <button class="floatBtn" (click)="restartGame()"><i style="font-size: 80px;" class="fa-solid fa-rotate"></i></button>
-            <button class="floatBtn" style="top: 58%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+            <button *ngIf="!gameSaved" class="floatBtn" style="top: 58%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+            <h3 *ngIf="!gameSaved" class="h3-points fade-in" style="left: 86%; top: 25%; position: fixed; line-height: 50px;">Guardar Partida</h3>
+            <i *ngIf="!gameSaved" style="left: 92.5%; top: 45%; position: fixed; color: bisque;" class="fa-solid fa-down-long fade-in"></i>
         }
 
         <div class="message" id="msg">
             
             <div>
-              @if(isCorrect && lives > 0){
+              @if(isCorrect && lives > 0 && !notEnoughCharacters){
                 <p class="correct">¡Respuesta Correcta! Se sumaron 15 puntos al puntaje total.</p>  
               }
-              @else if(!isCorrect && lives > 0) {
+              @else if(!isCorrect && lives > 0 && !notEnoughCharacters) {
                 <p class="wrong">¡Respuesta Incorrecta! La respuesta correcta era: "{{correctAnswer}}".</p>   
                 <p class="wrong">Tiene {{lives}} <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> restantes.</p>             
               }
@@ -65,7 +67,12 @@
                 <p>¡Juego Finalizado! Ya no le quedan más <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> disponibles.</p>
                 <p>Su puntaje total es de {{this.points}} puntos.</p>
                 <p>Más suerte la próxima.</p>   
-              }           
+              }      
+              
+              @if(notEnoughCharacters){
+                <p>Ya no le quedan más personajes para adivinar.</p>
+                <p>Su puntaje total es de {{this.points}} puntos.</p>
+              }
             </div>  
         </div>
 

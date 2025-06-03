@@ -14,17 +14,17 @@ import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 export const routes: Routes = [
 
     {path: '', redirectTo: '/login', pathMatch: "full"}, 
-    {path: 'home', component: HomeComponent}, 
-    {path: 'login', component: LoginComponent}, 
-    {path: 'quiensoy', component: QuiensoyComponent},
-    {path: 'registro', component: RegistroComponent}, 
+    {path: 'home', loadComponent: () => import('./componentes/home/home.component').then(m => m.HomeComponent)},
+    {path: 'login', loadComponent: () => import('./componentes/login/login.component').then(m => m.LoginComponent)},
+    {path: 'quiensoy', loadComponent: () => import('./componentes/quiensoy/quiensoy.component').then(m => m.QuiensoyComponent)},
+    {path: 'registro', loadComponent: () => import('./componentes/registro/registro.component').then(m => m.RegistroComponent)},
+    {path: 'resultados', loadComponent: () => import('./componentes/results/results.component').then(m => m.ResultsComponent)},
+    {path: 'encuesta', loadComponent: () => import('./componentes/encuesta/encuesta.component').then(m => m.EncuestaComponent)},
     {
         path: 'games',
         loadChildren: () => import('./modules/games/games-routing.module').then( m => m.GamesRoutingModule)
     },
-    {path: 'chat', component: ChatComponent}, 
-    {path: 'resultados', component: ResultsComponent}, 
-    {path: 'encuesta', component: EncuestaComponent}
+    {path: '**', loadComponent: ()=> import('./componentes/error/error.component').then(m => m.ErrorComponent)}
 
 ];
 

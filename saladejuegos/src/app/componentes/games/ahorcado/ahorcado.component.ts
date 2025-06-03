@@ -3,6 +3,7 @@ import { PositionLetter } from './position-letter';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../../services/supabase.service';
+import { WordgeneratorService } from '../../../services/wordgenerator.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -25,12 +26,15 @@ export class AhorcadoComponent implements OnInit{
   randomNumber!:number;
   substractPoints:number = 0;
   letters:string[] = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 
-    'z', 'x', 'c', 'v', 'b', 'n', 'm']
+    'z', 'x', 'c', 'v', 'b', 'n', 'm'];
+  gameSaved:boolean = false;
+  randomWordsGenerated:string[] = [];
+  buttonPlay:boolean = false;
 
   ngOnInit(): void {
     console.log(this.randomWord.length);
+    this.getData();
     this.resetFlags();
-    this.pickRandomWord();
   }
 
   constructor(private router: Router){
@@ -38,22 +42,44 @@ export class AhorcadoComponent implements OnInit{
   }
 
   supaBase = inject(SupabaseService);
+  randomWordService = inject(WordgeneratorService);
+
+  getData(){
+    this.randomWordService.getRandomWords().subscribe((data) => {
+      this.randomWordsGenerated = data;
+      console.log(this.randomWordsGenerated);
+    });
+  }
+
+  play(){
+    this.pickRandomWord();
+    console.log(this.randomWord);
+    this.buttonPlay = true;
+  }
 
   pickRandomWord(){
-    console.log('Array: ' + this.guessingWords.length);
+    console.log('Array: ' + this.randomWordsGenerated.length);
     
-    this.randomNumber =  Math.floor(Math.random() * this.guessingWords.length);
+    this.randomNumber =  Math.floor(Math.random() * this.randomWordsGenerated.length);
 
-    for(let i = 0; i < this.guessingWords.length; i++){
+    for(let i = 0; i < this.randomWordsGenerated.length; i++){
 
-      if(this.randomNumber == i){
-
-        this.randomWord = this.guessingWords[i];
-        this.guessingWords.splice(this.guessingWords.indexOf(this.randomWord), 1);
-      }
+      if(this.randomWordsGenerated[i].length <= 10 && !this.randomWordsGenerated[i].includes(' ')){
+          this.randomWord = this.randomWordsGenerated[i];
+          console.log(this.randomWord);
+          this.randomWordsGenerated.splice(this.randomWordsGenerated.indexOf(this.randomWord), 1);
+          this.randomWord = this.randomWord.toUpperCase();
+          this.randomWord = this.removeAcentuationSpanish(this.randomWord);
+          console.log(this.randomWord);
+          return;
+      }      
     }
-    console.log(this.randomWord);
   }
+
+  removeAcentuationSpanish(palabra: string): string {
+    return palabra.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  
 
   guessLetter(letter:string){
 
@@ -149,6 +175,7 @@ export class AhorcadoComponent implements OnInit{
         console.log(error.message);
       }
       else{
+        this.gameSaved = true;
       }
     });
     this.showGameSaved();
@@ -187,6 +214,7 @@ export class AhorcadoComponent implements OnInit{
     this.gameLost = false;
     this.gameWon = false;
     this.wordGuessedRight = false;
+    this.gameSaved = false;
   }
 
   modifyHeart(frequency:number){

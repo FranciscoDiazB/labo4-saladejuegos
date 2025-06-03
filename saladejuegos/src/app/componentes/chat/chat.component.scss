@@ -111,6 +111,10 @@ h1{
     }
 }
 
+.red{
+    color: crimson;
+}
+
 .input-chat-game{
     margin-right: 30px;
     position: relative;
@@ -133,7 +137,7 @@ i{
     font-size: 20px;
 }
 
-  .chat-container {
+.chat-container {
     font-family: 'westernFont';
     position: absolute;
     width: 450px;
@@ -151,17 +155,21 @@ i{
     transform: scale(0.0000001);
     transition: transform 0.4s, top 0.4s;
     z-index: 2;
-  }
+}
 
-  .open-chat{
+.blue{
+    color: cadetblue;
+}
+
+.open-chat{
     //visibility: visible;
     //animation: 0.4s ease-in 0s 1 slideInFromBelow;
     transform: scale(1);
     top: 25%;
     z-index: 5000;
-  }
+}
   
-  .floatBtn{
+.floatBtn{
     background-color: transparent;
     position: fixed;
     top: 87%;
@@ -176,7 +184,7 @@ i{
         background-color: brown;
     }
 
-.pulse:hover {
+    .pulse:hover {
         -webkit-animation-name: pulse;
         animation-name: pulse;
         -webkit-animation-duration: 1.5s;

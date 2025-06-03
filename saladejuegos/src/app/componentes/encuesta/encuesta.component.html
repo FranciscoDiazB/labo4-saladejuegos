@@ -24,12 +24,12 @@
                         <h1 style="text-align: center;">{{this.supaBase.currentUser()?.email}}</h1>
                     
                         <div>
-                            <input [ngClass]="{'error': justName?.hasError('required')}" style="margin-right: 20px;" class="input-form" type="text" name="" id="name" formControlName="name" placeholder="Ingrese su nombre...">
+                            <input [ngClass]="{'error': justName?.hasError('required')}" style="margin-right: 20px;" maxlength="50" class="input-form" type="text" name="" id="name" formControlName="name" placeholder="Ingrese su nombre...">
                                 <ng-container *ngIf="justName?.hasError('pattern')">
                                     <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
                                 </ng-container>
     
-                            <input [ngClass]="{'error': justSurname?.hasError('required')}" class="input-form" type="text" name="" id="name" formControlName="surname" placeholder="Ingrese su apellido...">
+                            <input [ngClass]="{'error': justSurname?.hasError('required')}" class="input-form" maxlength="70" type="text" name="" id="name" formControlName="surname" placeholder="Ingrese su apellido...">
                             <ng-container *ngIf="justSurname?.hasError('pattern')">
                                 <p style="position: relative; top: 14.5%; left: 25%; margin-top: -10px;">¡Unicamente letras para este campo!</p>
                             </ng-container>
@@ -40,7 +40,7 @@
                             <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico de hasta 10 caracteres máximo!</p>
                         </ng-container>
                         <ng-container *ngIf="justPhoneNumber?.hasError('min')">
-                            <p style="position: fixed; left: 27%; margin-top: -10px;">¡Número telefónico no puede empezar con 0!</p>
+                            <p style="position: fixed; left: 27%; margin-top: -10px;">¡El número telefónico no puede ser 0!</p>
                         </ng-container>
     
                         <i style="position: fixed; left: 7%; top: 29%;" class="fa-solid fa-user"></i>
@@ -110,7 +110,7 @@
                               </div>
     
                               <ng-container *ngIf="this.gameGenres.invalid">
-                                <p style="position: fixed; top: 72%; left: 12%; text-align: center;">¡Seleccionar como mínimo una opción para continuar!</p>
+                                <p style="position: fixed; top: 72%; left: 12%; text-align: center;">{{justGameGenres?.getError('minSelected')}}</p>
                               </ng-container>
                         </div>
     
@@ -145,7 +145,7 @@
                             <h3 style="font-size: 45px; text-align: center; text-shadow: 5px 5px 5px chocolate;">¿Cuál dirías que es la plataforma de juegos más icónica?</h3>
 
                             <input style="left: 6%; width: 540px;" [ngClass]="{'error': justQuestions?.hasError('required')}" class="input-form" type="text" name=""
-                             id="question" [ngModel]="questionLenght" formControlName="question" maxlength="50" placeholder="50 caracteres máximo...">
+                             id="question" [ngModel]="questionLength" formControlName="question" maxlength="50" placeholder="50 caracteres máximo...">
                             <ng-container *ngIf="justQuestions?.hasError('pattern')">
                                     <p style="position: relative; top: 14.5%; left: 22%; margin-top: -10px;">¡No se aceptan caracteres especiales!</p>
                             </ng-container>
@@ -169,8 +169,8 @@
         }
         @else if(this.supaBase.currentUser() === null){
 
-            <h3 style="top: 40%;">Para poder ingresar a la Encuesta, primero tiene que iniciar sesión.</h3>
-            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+            <h3 style="top: 10%;">Para poder ingresar a la Encuesta, primero tiene que iniciar sesión.</h3>
+            <h3 style="top: 15%">En caso de no tener un usuario creado, registrarse...</h3>
         }
         
     </div>

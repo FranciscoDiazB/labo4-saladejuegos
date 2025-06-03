@@ -11,17 +11,20 @@
         @else {
 
             @if(lives > 0){
-                <div class="lives">
+                <div  class="lives">
         
                     @for (item of [].constructor(lives); track $index) {
-                        <i class="fa-solid fa-heart"></i><br>
+                        <i style="margin-right: 10px;" class="fa-solid fa-heart"></i>
                     }
         
                 </div>
             }
-            @else {
+
+            @if(noRemainigCards || lives == 0) {
                 <button class="floatBtn" (click)="restartGame()"><i class="fa-solid fa-rotate" style="font-size: 80px;"></i></button>
-                <button class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+                <button *ngIf="!gameSaved" class="floatBtn" style="top: 78%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+                <h3 *ngIf="!gameSaved" class="fade-in" style="left: 86%; top: 45%; position: fixed; line-height: 50px;">Guardar Partida</h3>
+                <i *ngIf="!gameSaved" style="left: 92.5%; top: 65%; position: fixed;" class="fa-solid fa-down-long"></i>
             }
                 <div style="position: relative; left: 7%;">
                     <br><br><br><br><br>
@@ -44,10 +47,14 @@
                 
                 <div>
                   <br><br>
-                    @if(isGameOver){
+                    @if(isGameOver && !noRemainigCards){
                         <p>¡Se quedó sin vidas!</p>
                         <p>Su puntaje total es de {{this.score}} puntos</p>
                         <p>Más suerte la próxima.</p>
+                    }
+                    @else if (noRemainigCards) {
+                        <p>¡El mazo se quedó sin cartas!</p>
+                        <p>Su puntaje total es de {{this.score}} puntos</p>
                     }
                 </div>  
             </div>

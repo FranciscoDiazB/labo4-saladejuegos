@@ -28,6 +28,13 @@ export class NavbarComponent implements OnInit{
     })
   }
 
+  redirctoTo(path:string){
+
+    path = 'games/' + path;
+
+    this.router.navigate([path]);
+  }
+
   async signOutSession(){
 
     const { error } = await this.supaBase.supabaseFunctions.auth.signOut();

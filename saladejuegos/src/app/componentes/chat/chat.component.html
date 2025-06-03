@@ -10,10 +10,9 @@
   
       @for (msg of messages; track $index) {
   
-  
         <div [ngClass]="{'chat-myUser': msg.username == supabase.currentUser()?.email , 'chat-anotherUser': msg.username != supabase.currentUser()?.email}">
   
-            <p style="font-size: 25px; color: crimson; margin-bottom: -5px;"><i class="fa-solid fa-hat-cowboy"></i> {{ msg.username.split('@',1)[0] }}: </p>
+            <p class="red" [ngClass]="{'blue': msg.username == supabase.currentUser()?.email}" style="font-size: 25px; margin-bottom: -5px;"><i class="fa-solid fa-hat-cowboy"></i> {{ msg.username.split('@',1)[0] }}: </p>
             <p style="line-height: 15px;">{{ msg.context }}</p>
             <p style="font-size: 15px; position: relative; left: 85%; margin-bottom: -5px;">{{msg.inserted_at}}</p>
   

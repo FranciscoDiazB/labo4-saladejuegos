@@ -21,6 +21,8 @@ export class MayormenorComponent implements OnInit {
   isGameOver:boolean = false;
   lives:number = 5;
   lowerScore:number = 0;
+  noRemainigCards:boolean = false;
+  gameSaved:boolean = false;
 
   constructor(){}
 
@@ -33,7 +35,6 @@ export class MayormenorComponent implements OnInit {
     this.score = 0;
     this.message = '';
     this.isGameOver = false;
-
     this.deck.getDeck().subscribe((data: any) => {
       this.deckId = data.deck_id;
       this.drawInitialCard();
@@ -43,16 +44,32 @@ export class MayormenorComponent implements OnInit {
   drawInitialCard() {
     this.deck.getCard(this.deckId).subscribe((data: any) => {
       this.currentCard = data.cards[0];
+      this.showCard();
     });
   }
 
   guess(higher: boolean) {
 
     if(this.lives > 0){
+
+      this.closeCard();
       
       this.deck.getCard(this.deckId).subscribe((data: any) => {
+        
         const nextCard = data.cards[0];
-  
+        console.log(nextCard);
+        
+        const remaining = data.remaining;
+
+        if(remaining == 1){
+          this.noRemainigCards = true;
+          console.log(this.noRemainigCards);
+          this.isGameOver = true;
+          this.showMessage();
+        }
+
+        console.log(remaining);
+        
         const currentValue = this.getCardValue(this.currentCard.value);
         const nextValue = this.getCardValue(nextCard.value);
 
@@ -111,6 +128,7 @@ export class MayormenorComponent implements OnInit {
         console.log(error.message);
       }
       else{
+        this.gameSaved = true;
       }
     });
     console.log(this.score)
@@ -145,6 +163,19 @@ export class MayormenorComponent implements OnInit {
     }
   }
 
+  showCard(){
+    const element = document.getElementById('card');
+    element?.classList.add('open-card')
+  }
+
+  closeCard(){
+    const element = document.getElementById('card');
+
+    setTimeout(() => this.showCard(), 400);
+
+    element?.classList.remove('open-card')
+  }
+
   showMessage(){
     const element = document.getElementById("msg");
     element?.classList.add('open-msg');
@@ -168,6 +199,9 @@ export class MayormenorComponent implements OnInit {
   restartGame(){
     this.lives = 5;
     this.lowerScore = 0;
+    this.gameSaved = false;
+    this.isGameOver = false;
+    this.noRemainigCards = false;
     this.startGame();
     this.closeMessage();
     this.removeGameSaved();

@@ -19,6 +19,7 @@ export class ShooterComponent implements OnDestroy {
   countClicks:number = 0;
   flagStartGame:boolean = false;
   interval!:NodeJS.Timeout;
+  gameSaved:boolean = false;
 
   constructor(){
 
@@ -105,6 +106,7 @@ export class ShooterComponent implements OnDestroy {
         console.log(error.message);
       }
       else{
+        this.gameSaved = true;
       }
     });
     console.log(this.points)

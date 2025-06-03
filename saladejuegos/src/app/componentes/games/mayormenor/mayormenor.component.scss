@@ -80,7 +80,12 @@
 }
 
 .img-Card{
-    animation: 3s ease-in 0s 1 slideInFromRight;
+    transform: scale(0.0000001);
+    transition: 0.4s;
+}
+
+.open-card{
+    transform: scale(1);;
 }
 
 .img-Deck{
@@ -153,6 +158,10 @@ h3{
     text-shadow: 5px 5px 5px chocolate;
 }
 
+.fade-in{
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+}
+
 .slide-B{
     animation: 3s ease-out 0s 1 slideInFromBelow;
 }
@@ -185,11 +194,12 @@ h3{
 
 .lives{
     position: fixed;
-    top: 35%;
-    left: 85%;
+    top: 13%;
+    left: 51%;
     padding: 25px;
     background-color: transparent;
-    border-radius: 15%;
+    padding: 15px;
+    border-radius: 15px;
     border: transparent;
     box-shadow: 5px 3px 15px black;
     animation: 3s ease-in-out 0s 1 fadeInOpacity;

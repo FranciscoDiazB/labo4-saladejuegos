@@ -26,11 +26,13 @@ export class PreguntadosComponent {
   notEnoughCharacters:boolean = false;
   lives:number = 5;
   points:number = 0;
+  lowerPoints:number = 0;
 
   games:Game[] = [];
   gameGuessed:Game[] = [];
   currentGame!:Game;
   notEnoughGames:boolean = false;
+  gameSaved:boolean = false;
 
   constructor() {}
 
@@ -86,9 +88,10 @@ export class PreguntadosComponent {
 
   newRound(){
 
+    this.closeImgHolder();
     console.log(this.characters.length);
 
-    if(this.characters.length >= 4){
+    if(this.characters.length >= 1){
       
       this.selectedAnswer = null;
       this.isCorrect = null;
@@ -96,8 +99,9 @@ export class PreguntadosComponent {
       const randomIndex = Math.floor(Math.random() * this.characters.length);
       this.currentCharacter = this.characters[randomIndex];
       this.correctAnswer = this.currentCharacter.fullName;
+
+      console.log(this.correctAnswer);
   
-      
       this.characterGuessed.push(this.currentCharacter)
       
       const incorrectOptions = this.characters
@@ -113,6 +117,7 @@ export class PreguntadosComponent {
     }
     else{
       this.notEnoughCharacters = true;
+      this.showMessage();
     }
   }
 
@@ -125,10 +130,16 @@ export class PreguntadosComponent {
     }
     else{
       this.isCorrect = false;
+      this.lowerPoints++;
+      this.points -= this.lowerPoints;
       this.lives--;
       this.shakeQuestion();
     }
     this.showMessage();
+
+    if(this.points < 0){
+      this.points = 0;
+    }
   }
 
   next(){
@@ -148,6 +159,7 @@ export class PreguntadosComponent {
         console.log(error.message);
       }
       else{
+        this.gameSaved = true;
       }
     });
     console.log(this.points)
@@ -182,6 +194,19 @@ export class PreguntadosComponent {
     }
   }
 
+  openImgHolder(){
+    const element = document.getElementById('image-holder');
+    element?.classList.add('open-imgHolder')
+  }
+
+  closeImgHolder(){
+    const element = document.getElementById('image-holder');
+
+    setTimeout(() => this.openImgHolder(), 200);
+
+    element?.classList.remove('open-imgHolder')
+  }
+
   showMessage(){
     const element = document.getElementById("msg");
     element?.classList.add('open-msg');
@@ -205,8 +230,10 @@ export class PreguntadosComponent {
   restartGame(){
     this.characterGuessed = [];
     this.notEnoughCharacters = false;
+    this.gameSaved = false;
     this.lives = 5;
     this.points = 0; 
+    this.lowerPoints = 0;
     this.getDataAndStartRound();
     this.closeMessage();
     this.removeGameSaved();
