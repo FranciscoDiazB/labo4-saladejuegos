@@ -198,6 +198,7 @@ export class AhorcadoComponent implements OnInit{
       this.wordGuessedRight = true;
       this.gameWon = true;
       this.showMessage();
+      this.saveDataGame();
     }
   }
 

@@ -48,9 +48,9 @@
 
         @if(lives == 0 || notEnoughCharacters) {
             <button class="floatBtn" (click)="restartGame()"><i style="font-size: 80px;" class="fa-solid fa-rotate"></i></button>
-            <button *ngIf="!gameSaved" class="floatBtn" style="top: 58%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
+            <!-- <button *ngIf="!gameSaved" class="floatBtn" style="top: 58%;" (click)="saveDataGame()"><i class="fa-solid fa-floppy-disk" style="font-size: 80px;"></i></button>
             <h3 *ngIf="!gameSaved" class="h3-points fade-in" style="left: 86%; top: 25%; position: fixed; line-height: 50px;">Guardar Partida</h3>
-            <i *ngIf="!gameSaved" style="left: 92.5%; top: 45%; position: fixed; color: bisque;" class="fa-solid fa-down-long fade-in"></i>
+            <i *ngIf="!gameSaved" style="left: 92.5%; top: 45%; position: fixed; color: bisque;" class="fa-solid fa-down-long fade-in"></i> -->
         }
 
         <div class="message" id="msg">

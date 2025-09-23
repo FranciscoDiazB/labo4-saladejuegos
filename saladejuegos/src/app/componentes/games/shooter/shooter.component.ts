@@ -45,6 +45,9 @@ export class ShooterComponent implements OnDestroy {
         this.flagGameOver = true;
         this.targets.length = 0;
         this.showMessage();
+        setTimeout(() => {
+          this.saveDataGame();
+        }, 1000);
         clearInterval(this.interval); 
       }
     }, 1000);
@@ -107,10 +110,10 @@ export class ShooterComponent implements OnDestroy {
       }
       else{
         this.gameSaved = true;
+        console.log(this.points)
+        this.showGameSaved();
       }
-    });
-    console.log(this.points)
-    this.showGameSaved();
+    });  
   }
   
   showMessage(){

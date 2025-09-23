@@ -66,6 +66,7 @@ export class MayormenorComponent implements OnInit {
           console.log(this.noRemainigCards);
           this.isGameOver = true;
           this.showMessage();
+          this.saveDataGame();
         }
 
         console.log(remaining);
@@ -93,6 +94,7 @@ export class MayormenorComponent implements OnInit {
           if(this.lives == 0){
             this.isGameOver = true;
             this.showMessage();
+            this.saveDataGame();
           }
         }
         if(this.score < 0){

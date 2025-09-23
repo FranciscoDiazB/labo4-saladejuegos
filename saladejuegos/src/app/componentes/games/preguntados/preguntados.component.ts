@@ -117,6 +117,7 @@ export class PreguntadosComponent {
     }
     else{
       this.notEnoughCharacters = true;
+      this.saveDataGame();
       this.showMessage();
     }
   }
@@ -134,6 +135,11 @@ export class PreguntadosComponent {
       this.points -= this.lowerPoints;
       this.lives--;
       this.shakeQuestion();
+
+      if(this.lives == 0){
+        this.saveDataGame();
+      }
+
     }
     this.showMessage();
 
@@ -190,7 +196,13 @@ export class PreguntadosComponent {
         element?.classList.remove('three-left');
         element?.classList.remove('four-left');
         break;
+    }
 
+    if(this.notEnoughCharacters){
+        element?.classList.remove('one-left');
+        element?.classList.remove('two-left');
+        element?.classList.remove('three-left');
+        element?.classList.remove('four-left');
     }
   }
 
