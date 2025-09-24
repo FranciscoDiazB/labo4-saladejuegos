@@ -143,8 +143,8 @@ i{
     width: 450px;
     height: 600px;
     border-radius: 10%;
-    top: 55%;
-    left:75%;
+    bottom: 5%;
+    right: 5%;
     background: rgba(184, 20, 20, 0.603);
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(14.5px);
@@ -165,7 +165,7 @@ i{
     //visibility: visible;
     //animation: 0.4s ease-in 0s 1 slideInFromBelow;
     transform: scale(1);
-    top: 25%;
+    bottom: 5%;
     z-index: 5000;
 }
   

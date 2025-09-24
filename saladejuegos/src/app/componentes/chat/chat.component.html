@@ -22,8 +22,8 @@
     
     <div class="input-and-button">
       <p style="font-size: 20px; position: relative; color: bisque; top: 90%; left: 4%; margin-bottom: -1px;">{{newMessage.length}}/150<i style="margin-left: 10px;" class="fa-regular fa-keyboard"></i></p>
-      <input class="input-chat-game" type="text" maxlength="150" [(ngModel)]="newMessage" placeholder=" Escriba un mensaje...">
-      <button class="btn-send" (click)="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+      <input class="input-chat-game" id="input-chat" (keyup.enter)="sendMessage()" type="text" maxlength="150" [(ngModel)]="newMessage" placeholder=" Escriba un mensaje...">
+      <!-- <button class="btn-send" id="button-chat" (click)="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button> -->
     </div>
     
   </div>

@@ -53,13 +53,29 @@
             <i *ngIf="!gameSaved" style="left: 92.5%; top: 45%; position: fixed; color: bisque;" class="fa-solid fa-down-long fade-in"></i> -->
         }
 
+        @if (timer > 0 && isCorrect == null) {
+          <h2 class="h3-points" id="timer" style="top:40%; right: 10%; border: 2px solid bisque; padding: 20px;">
+            {{this.timer}} seg</h2>
+        }
+        @else if(timer > 0 && isCorrect != null){
+          <h2 class="h3-points fadeIn" style="top:3%; right: 30%; border: 2px solid bisque; padding: 20px;">
+            ¡Tiempo Pausado!</h2>
+        }
+        @else if (timer == 0) {
+
+        }
+
         <div class="message" id="msg">
             
             <div>
               @if(isCorrect && lives > 0 && !notEnoughCharacters){
                 <p class="correct">¡Respuesta Correcta! Se sumaron 15 puntos al puntaje total.</p>  
               }
-              @else if(!isCorrect && lives > 0 && !notEnoughCharacters) {
+              @else if (!isCorrect && lives > 0 && !notEnoughCharacters && timer == 0) {
+                <p class="wrong">¡Se le acabó el tiempo! La respuesta correcta era: "{{correctAnswer}}".</p>   
+                <p class="wrong">Tiene {{lives}} <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> restantes.</p>
+              }
+              @else if(!isCorrect && lives > 0 && !notEnoughCharacters && timer > 0) {
                 <p class="wrong">¡Respuesta Incorrecta! La respuesta correcta era: "{{correctAnswer}}".</p>   
                 <p class="wrong">Tiene {{lives}} <i style="font-size: 25px; text-shadow: none;" class="fa-solid fa-heart"></i> restantes.</p>             
               }

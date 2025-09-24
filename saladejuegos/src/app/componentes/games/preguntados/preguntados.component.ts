@@ -34,6 +34,11 @@ export class PreguntadosComponent {
   notEnoughGames:boolean = false;
   gameSaved:boolean = false;
 
+  timer!:number; 
+  countClicks:number = 0;
+  flagStartGame:boolean = false;
+  interval!:NodeJS.Timeout;
+
   constructor() {}
 
   ngOnInit(){
@@ -92,6 +97,21 @@ export class PreguntadosComponent {
     console.log(this.characters.length);
 
     if(this.characters.length >= 1){
+
+      this.timer = 15;
+
+      this.interval = setInterval(() => {
+      
+        this.timer--;
+  
+        console.log(this.timer);
+  
+        if (this.timer <= 0) {
+          this.selectAnswer('');
+          this.showMessage();
+          clearInterval(this.interval); 
+        }
+      }, 1000);
       
       this.selectedAnswer = null;
       this.isCorrect = null;
@@ -124,6 +144,7 @@ export class PreguntadosComponent {
 
   selectAnswer(option: string){
     this.selectedAnswer = option;
+    clearInterval(this.interval);
 
     if(this.correctAnswer === option){
       this.isCorrect = true;
