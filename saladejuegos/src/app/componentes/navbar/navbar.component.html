@@ -24,7 +24,7 @@
 
             <button type="button" class="btn btn-default" routerLink="resultados">Resultados</button>
             <button type="button" class="btn btn-default" routerLink="encuesta">Encuesta</button>
-            <button type="button" class="btn btn-default" routerLink="resultados-encuesta">Resultados de la Encuesta</button>
+            <button *ngIf="adminPosta" type="button" class="btn btn-default" routerLink="resultados-encuesta">Resultados de la Encuesta</button>
         </div>
 
         <div style="position: relative; right:-25%; display: flex; flex-direction: row;">

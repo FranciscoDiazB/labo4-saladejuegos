@@ -3,39 +3,112 @@
     <div class="Home">
 
         <h1>Resultados de las Encuestas</h1>
-        
+
         @if (this.supaBase.currentUser()) {
 
-            @if (!showAll) {
+        @if (!showAll && !showLineChart && !showPieChart) {
 
-                <div style="display: flex; flex-direction: row; gap: 45px; position: absolute; left: 20%; top: 35%;">
-    
-                    <button class="button-show-survey" (click)="showAllSurveys()" >Encuestas</button>
-                    <button class="button-show-survey">Horas Jugadas</button>
-                    <button class="button-show-survey">Edades</button>
-    
+        <div style="display: flex; flex-direction: row; gap: 45px; position: absolute; left: 20%; top: 35%;">
+
+            <button class="button-show-survey" (click)="showAllSurveys()">Encuestas</button>
+            <button class="button-show-survey" (click)="showOnlyChartLine()">Horas Jugadas</button>
+            <button class="button-show-survey" (click)="showOnlyChartPie()">Edades</button>
+
+        </div>
+        }
+        @else {
+
+        <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 3%;"
+            (click)="goBack()">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>
+        }
+
+        @if (showAll) {
+
+        <div class="list-cards">
+
+            <div *ngFor="let e of encuestas" class="card" style="display: flex; gap: 2.5%; justify-content: center;">
+                <h5 style="border-right: 2px solid bisque; padding-right: 2.5%;">{{ e.name }} {{ e.surname }}</h5>
+
+                <h5 style="border-right: 2px solid bisque; padding-right: 2.5%;">{{ e.age }} años</h5>
+                <h5 style="border-right: 2px solid bisque; padding-right: 2.5%;">+54 {{ e.phone }}</h5>
+
+                <h5 style="border-right: 2px solid bisque; padding-right: 2.5%;">
+                    <span *ngFor="let g of e.generosTrue; let last = last">
+                        {{ g }}<span *ngIf="!last">, </span>
+                    </span>
+                </h5>
+
+                <h5 style="border-right: 2px solid bisque; padding-right: 2.5%;">{{ e.minutesPlayed }}min. </h5>
+
+                <h5>{{ e.answer }}</h5>
+                <hr>
+            </div>
+
+        </div>
+        }
+
+        @if (showLineChart) {
+
+            <div style="display: flex; gap: 35px; width: 95%;">
+
+                <div class="chart-container">
+                    <ngx-charts-area-chart
+                      [results]="lineChartData"
+                      [view]="[800, 300]"
+                      [yAxis]="true"
+                      [scheme]="colorScheme"
+                      [showGridLines]="true"
+                      [animations]="true"
+                      [yAxisLabel]="'Edad'"
+                      [autoScale]="true">
+                    </ngx-charts-area-chart>
+                  </div>
+
+
+                  <h5 style="font-size: 30px;">Se muestra el gráfico en relación a las edades de los usuarios que participaron de la encuesta. <br><br>
+                    El eje Y, hace referencia a las diferentes edades registradas en las encuestas por parte de los usuarios, mientras que el eje X hace referencia a los 
+                    usuarios que realizaron la encuesta.
+                  </h5>
+
+            </div>
+
+        }
+
+        @if (showPieChart) {
+
+            <div style="display: flex; gap: 35px; width: 95%;">
+
+                <div class="chart-container">
+
+                    <ngx-charts-pie-chart
+                    [results]="pieChartData"
+                    [legend]="true"
+                    [labels]="true"
+                    [view]="[600, 300]"
+                    [scheme]="colorScheme"
+                    [doughnut]="true"
+                    [arcWidth]="0.65" 
+                    [explodeSlices]="false"
+                    [gradient]="false">
+                    </ngx-charts-pie-chart>
                 </div>
-            }
-            @else {
 
-                <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 3%;" 
-                (click)="goBack()">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>   
-            }
+                  <h5 style="font-size: 30px;">Se muestra el gráfico de torta en relación al tiempo que cada usuario juega en promedio diariamente a los videojuegos. <br><br>
+                    En el gráfico se muestran la cantidad de opciones disponibles de tiempo, siempre representado el valor numérico en minutos, y la cantidad de usuario que eligieron dicha opción.
+                  </h5>
 
-            @if (showAll) {
+            </div>
 
-
-                
-            }
+        }
 
 
         }
         @else if(this.supaBase.currentUser() === null){
 
-            <h3 style="top: 40%;">Para poder ingresar al Menu Principal, primero tiene que iniciar sesión.</h3>
-            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        <h3 style="top: 40%;">Para poder ingresar al Menu Principal, primero tiene que iniciar sesión.</h3>
+        <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
         }
-        
+
     </div>
-    
+
 </div>

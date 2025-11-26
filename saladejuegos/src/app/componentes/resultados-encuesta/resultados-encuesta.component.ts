@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SupabaseService } from '../../services/supabase.service';
 import { Router } from '@angular/router';
+import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-resultados-encuesta',
-  imports: [],
+  imports: [CommonModule, NgxChartsModule],
   templateUrl: './resultados-encuesta.component.html',
   styleUrl: './resultados-encuesta.component.scss'
 })
@@ -13,22 +15,31 @@ export class ResultadosEncuestaComponent implements OnInit {
   supaBase = inject(SupabaseService);
 
   showAll:boolean = false;
+  showLineChart:boolean = false;
+  showPieChart:boolean = false;
 
   encuestas: any[] = [];
   lineChartData: any[] = [];
   pieChartData: any[] = [];
+
+  colorScheme: Color = {
+    name: 'customScheme',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#be0c0caf', '#ffe4c4', '#d2691e', '#000000']
+  };
 
   constructor(private router:Router){
 
   }
 
   ngOnInit(): void {
-    
+    this.loadEncuestas();
   }
 
   async loadEncuestas() {
     const { data, error } = await this.supaBase.supabaseFunctions
-      .from('encuestas')
+      .from('survey')
       .select('*');
 
     if (error) {
@@ -56,9 +67,9 @@ export class ResultadosEncuestaComponent implements OnInit {
   prepareLineChart() {
     this.lineChartData = [
       {
-        name: 'Edades',
+        name: 'Edad',
         series: this.encuestas.map((e, i) => ({
-          name: `Persona ${i + 1}`,
+          name: e.name + ' ' + e.surname,
           value: e.age
         }))
       }
@@ -83,8 +94,18 @@ export class ResultadosEncuestaComponent implements OnInit {
     this.showAll = true;
   }
 
+  showOnlyChartLine(){
+    this.showLineChart = true;
+  }
+
+  showOnlyChartPie(){
+    this.showPieChart = true;
+  }
+
   goBack(){
     this.showAll = false;
+    this.showLineChart = false
+    this.showPieChart = false;
   }
 
 }

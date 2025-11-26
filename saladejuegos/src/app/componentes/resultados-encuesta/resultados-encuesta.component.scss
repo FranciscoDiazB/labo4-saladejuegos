@@ -4,6 +4,20 @@
     src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
 }
 
+@keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+
 @keyframes slideInFromTop {
     0% {
       transform: translateY(-100%);
@@ -63,7 +77,6 @@
 
 .Home{
     font-family: 'westernFont';
-    text-shadow: 5px 5px 5px black;
 	position: absolute;
 	top: 6.25%;
 	left: 10%;
@@ -87,10 +100,10 @@
     color: bisque;
     text-shadow: 5px 5px 5px black;
     font-size: 40px;
-    background-color: rgba(190, 12, 12, 0.685);
+    background-color: #be0c0caf;
     border-color: bisque;
     transition: 1s;
-    color: bisque;
+    color: #ffe4c4;
 
     &:hover{
         background-color: black;
@@ -106,10 +119,10 @@
 }
 
 h1{
-    font-size: 120px;
+    font-size: 70px;
     position: relative;
     left: 3.5%;
-    color: bisque;
+    color: rgb(255, 228, 196);
     text-shadow: 5px 5px 5px black;
     margin-bottom: 40px;
     animation: 2s ease-out 0s 1 slideInFromTop;
@@ -141,7 +154,7 @@ h1{
     width: 250px;
     height: 250px;
     border-radius: 15%;
-    box-shadow: 7px 7px 15px black;
+    box-shadow: 7px 7px 15px #000000;
     margin-right: 45px;
 }
 
@@ -155,6 +168,34 @@ h1{
     margin-right: 45px;
 }
 
+/* Fondo semitransparente del contenedor */
+.chart-container {
+    background: rgba(255, 228, 196, 0.426);
+    border-radius: 12px;
+    padding: 35px;
+    width: 900px;
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Eje X */
+  .x.axis .tick text {
+    font-size: 45px;
+    font-weight: 500;
+  }
+  
+  /* Eje Y */
+  .y.axis .tick text {
+    font-size: 45px;
+    font-weight: 500;
+  }
+  
+  /* Tooltip */
+  ngx-charts-tooltip-content .tooltip-content {
+    background: rgba(255, 255, 255, 0.063) !important;
+    color: #000 !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+  }
 
 h4{
     font-size: 43px;
@@ -170,8 +211,44 @@ h3{
     left: 2.5%;
     position: fixed;
     color: bisque;
+    text-shadow: 5px 5px 5px #d2691e;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+}
+
+h5{
+    font-size: 25px;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+p{
+    font-size: 15px;
+    color: bisque;
     text-shadow: 5px 5px 5px chocolate;
     animation: 2s ease-out 0s 1 slideInFromBelow;
+}
+
+.list-cards{
+    width: 70%;
+    position: absolute;
+    left: 15%;
+    background: transparent;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.card {
+    background-color: rgba(190, 12, 12, 0.685);
+    border: 2px solid bisque;
+    transition: 1s;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .list-cards::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
 }
 
 .chatBtn{
@@ -198,7 +275,7 @@ h3{
     border-radius: 25%;
 	width: 450px;
 	height: 600px;
-	background: black;
+	background: #000000;
 	border: 2px solid bisque;
 	padding: 30px;
 }

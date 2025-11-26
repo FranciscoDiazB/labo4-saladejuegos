@@ -10,6 +10,7 @@ import { PreguntadosComponent } from './componentes/games/preguntados/preguntado
 import { ChatComponent } from './componentes/chat/chat.component';
 import { ResultsComponent } from './componentes/results/results.component';
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { adminGuardGuard } from './guards/admin-guard.guard';
 
 export const routes: Routes = [
 
@@ -19,12 +20,16 @@ export const routes: Routes = [
     {path: 'quiensoy', loadComponent: () => import('./componentes/quiensoy/quiensoy.component').then(m => m.QuiensoyComponent)},
     {path: 'registro', loadComponent: () => import('./componentes/registro/registro.component').then(m => m.RegistroComponent)},
     {path: 'resultados', loadComponent: () => import('./componentes/results/results.component').then(m => m.ResultsComponent)},
-    {path: 'resultados-encuesta', loadComponent: () => import('./componentes/resultados-encuesta/resultados-encuesta.component').then(m => m.ResultadosEncuestaComponent)},
+    {path: 'resultados-encuesta', 
+        loadComponent: () => import('./componentes/resultados-encuesta/resultados-encuesta.component').then(m => m.ResultadosEncuestaComponent),
+        canActivate: [adminGuardGuard]
+    },
     {path: 'encuesta', loadComponent: () => import('./componentes/encuesta/encuesta.component').then(m => m.EncuestaComponent)},
     {
         path: 'games',
         loadChildren: () => import('./modules/games/games-routing.module').then( m => m.GamesRoutingModule)
     },
+    {path: 'no-autorizado', loadComponent: ()=> import('./componentes/no-autorizado/no-autorizado.component').then(m => m.NoAutorizadoComponent)},
     {path: '**', loadComponent: ()=> import('./componentes/error/error.component').then(m => m.ErrorComponent)}
 
 ];
