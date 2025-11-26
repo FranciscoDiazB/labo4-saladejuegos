@@ -26,6 +26,6 @@ export class SupabaseService {
 
     return from(promise);
   }
-  
+
   constructor() { }
 }

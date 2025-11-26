@@ -19,10 +19,21 @@
         <button type="button" class="btn btn-default" routerLink="registro" >Registro</button>
     }
     @else {
-        <button type="button" class="btn btn-default" style="left: 23.3%; position: relative;" routerLink="resultados">Resultados</button>
-        <button type="button" class="btn btn-default" style="left: 23.3%; position: relative;" routerLink="encuesta">Encuesta</button>
-        <h3 style="margin-right: 15px; left: 38%; position: relative;"> <i style="margin-right: 10px;" class="fa-solid fa-circle-user"></i>      Usuario: {{this.supaBase.currentUser()?.email}}</h3>
-        <button type="button" class="btn btn-default" style="left: 38%; position: relative;" (click)="signOutSession()">Cerrar Sesion</button>
+
+        <div style="position: relative; left: 10%;">
+
+            <button type="button" class="btn btn-default" routerLink="resultados">Resultados</button>
+            <button type="button" class="btn btn-default" routerLink="encuesta">Encuesta</button>
+            <button type="button" class="btn btn-default" routerLink="resultados-encuesta">Resultados de la Encuesta</button>
+        </div>
+
+        <div style="position: relative; right:-25%; display: flex; flex-direction: row;">
+
+            <button type="button" class="btn btn-default" (click)="signOutSession()">Cerrar Sesion</button>
+            <h3 style="margin-right: 15px;"> <i style="margin-right: 10px;" class="fa-solid fa-circle-user"></i>      Usuario: {{this.supaBase.currentUser()?.email}}</h3>
+
+        </div>
+
     }
 
 </div>

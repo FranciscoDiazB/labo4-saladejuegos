@@ -1,0 +1,259 @@
+
+@font-face {
+    font-family: "westernFont";
+    src: url('../../../../../../../Downloads/dakota-font/DakotaRegular-eZpj6.ttf');
+}
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes slideInFromBelow {
+    0% {
+      transform: translateY(500%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(1000%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+.backgroundHome{
+    background-image: url("../../assets/backgroundWestern.jpg");
+    position: absolute;
+    z-index: 0;
+    height: 91.7%;
+    width: 100%;
+}
+
+.iconGun{
+    background-image: url("../../assets/iconGun.jpg");
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 70px;
+    height: 70px;
+}
+
+.Home{
+    font-family: 'westernFont';
+    text-shadow: 5px 5px 5px black;
+	position: absolute;
+	top: 6.25%;
+	left: 10%;
+    border-radius: 0%;
+	width:80%;
+	height: 87.5%;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(14.5px);
+	-webkit-backdrop-filter: blur(14.5px);
+	border: 2px solid bisque;
+	padding: 30px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+.button-show-survey{
+
+    width: 250px;
+    height: 250px;
+    border-radius: 55px;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    font-size: 40px;
+    background-color: rgba(190, 12, 12, 0.685);
+    border-color: bisque;
+    transition: 1s;
+    color: bisque;
+
+    &:hover{
+        background-color: black;
+        border-color: bisque;
+        color: #E73332;
+    }
+
+    &:focus{
+        background-color: black;
+        border-color: #E73332;
+        color: bisque;
+    }
+}
+
+h1{
+    font-size: 120px;
+    position: relative;
+    left: 3.5%;
+    color: bisque;
+    text-shadow: 5px 5px 5px black;
+    margin-bottom: 40px;
+    animation: 2s ease-out 0s 1 slideInFromTop;
+}
+
+.higherLowerImage{
+    background-image: url("../../assets/higherLowerGame.jpg");
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15%;
+    box-shadow: 7px 7px 15px black;
+    margin-right: 45px;
+}
+
+.hangManImage{
+    background-image: url("../../assets/hangManGame.jpg");
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15%;
+    box-shadow: 7px 7px 15px black;
+    margin-right: 45px;
+}
+
+.triviaImage{
+    background-image: url("../../assets/triviaImage.jpg");
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15%;
+    box-shadow: 7px 7px 15px black;
+    margin-right: 45px;
+}
+
+.shooterImage{
+    background-image: url("../../assets/shooterGame.jpg");
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15%;
+    box-shadow: 7px 7px 15px black;
+    margin-right: 45px;
+}
+
+
+h4{
+    font-size: 43px;
+    position: relative;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    margin-right: 45px;
+    animation: 2s ease-out 0s 1 slideInFromRight;
+}
+
+h3{
+    font-size: 60px;
+    left: 2.5%;
+    position: fixed;
+    color: bisque;
+    text-shadow: 5px 5px 5px chocolate;
+    animation: 2s ease-out 0s 1 slideInFromBelow;
+}
+
+.chatBtn{
+    background-color: transparent;
+    position: relative;
+    top: -2.5%;
+    left: 92%;
+    width: 120px;
+    height: 110px;
+    border-radius: 15%;
+    border: transparent;
+    box-shadow: 5px 3px 15px black;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+
+.chat{
+    font-family: 'westernFont';
+	position: relative;
+	top: 26%;
+	left: 16%;
+    border-radius: 25%;
+	width: 450px;
+	height: 600px;
+	background: black;
+	border: 2px solid bisque;
+	padding: 30px;
+}
+
+@keyframes pulse {
+    /*   Outward Pulse */
+    25% {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    /*   Inward Pulse */
+    75% {
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+    
+.pulse:hover {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: infinite; 
+}  
+
+i{
+    font-size: 100px;
+}
+
+.floatBtn{
+    background-color: transparent;
+    position: absolute;
+    top: 85%;
+    font-size: 30px;
+    left: 65%;
+    height: 70px;
+    border-radius: 15%;
+    padding: 15px;
+    box-shadow: 5px 3px 15px black;
+    animation: 3s ease-in-out 0s 1 fadeInOpacity;
+    color: bisque;
+    border: transparent;
+    transition: 1s;
+
+    &:hover{
+        background-color: brown;
+    }
+}
+
+.btn-continue-success{
+    border: 2px solid cadetblue;
+}
+

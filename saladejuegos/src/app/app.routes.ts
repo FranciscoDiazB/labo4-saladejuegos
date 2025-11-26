@@ -19,6 +19,7 @@ export const routes: Routes = [
     {path: 'quiensoy', loadComponent: () => import('./componentes/quiensoy/quiensoy.component').then(m => m.QuiensoyComponent)},
     {path: 'registro', loadComponent: () => import('./componentes/registro/registro.component').then(m => m.RegistroComponent)},
     {path: 'resultados', loadComponent: () => import('./componentes/results/results.component').then(m => m.ResultsComponent)},
+    {path: 'resultados-encuesta', loadComponent: () => import('./componentes/resultados-encuesta/resultados-encuesta.component').then(m => m.ResultadosEncuestaComponent)},
     {path: 'encuesta', loadComponent: () => import('./componentes/encuesta/encuesta.component').then(m => m.EncuestaComponent)},
     {
         path: 'games',

@@ -1,0 +1,41 @@
+<div class="backgroundHome">
+
+    <div class="Home">
+
+        <h1>Resultados de las Encuestas</h1>
+        
+        @if (this.supaBase.currentUser()) {
+
+            @if (!showAll) {
+
+                <div style="display: flex; flex-direction: row; gap: 45px; position: absolute; left: 20%; top: 35%;">
+    
+                    <button class="button-show-survey" (click)="showAllSurveys()" >Encuestas</button>
+                    <button class="button-show-survey">Horas Jugadas</button>
+                    <button class="button-show-survey">Edades</button>
+    
+                </div>
+            }
+            @else {
+
+                <button class="floatBtn btn-continue-success" id="button-next" type="button" style="left: 3%;" 
+                (click)="goBack()">Volver <i style="font-size: 30px;" class="fa-solid fa-backward"></i></button>   
+            }
+
+            @if (showAll) {
+
+
+                
+            }
+
+
+        }
+        @else if(this.supaBase.currentUser() === null){
+
+            <h3 style="top: 40%;">Para poder ingresar al Menu Principal, primero tiene que iniciar sesión.</h3>
+            <h3 style="top: 50%">En caso de no tener un usuario creado, registrarse...</h3>
+        }
+        
+    </div>
+    
+</div>

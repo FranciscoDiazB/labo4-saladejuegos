@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy{
 
     this.subscription = this.supabaseChat.onNewMessage((msg) => {
       this.messages.push(msg);
-      setTimeout(() => this.scrollToBottom(), 100);
+      setTimeout(() => this.scrollToBottom(), 50);
     });
   }
 
